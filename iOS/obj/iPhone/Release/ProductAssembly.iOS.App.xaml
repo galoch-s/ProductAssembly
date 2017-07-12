@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		x:Class="ProductAssembly.App"
+		xmlns:ctrl="clr-namespace:ProductAssembly">
+	<Application.Resources>
+		<ResourceDictionary>
+
+			<Color x:Key="appGrayBottom">#ECECEC</Color>
+			<Color x:Key="appGrayLine">#E1E1E1</Color>
+			<Color x:Key="appGrayPlaceholder">#939393</Color>
+
+			
+			<Color x:Key="appBlue">#007BC1</Color>
+			<Color x:Key="appGreen">#009F9C</Color>
+			<Color x:Key="appRed">#E8536D</Color>
+			<Color x:Key="appYellow">#FFD517</Color>
+			<Color x:Key="appYellowPagenation">#FDD416</Color>
+
+
+			
+			<Color x:Key="appBlack">#404040</Color>
+			<Color x:Key="appBlackTitle">#424242</Color>
+			<Color x:Key="appBlackTop">#343433</Color>
+			
+			<Color x:Key="appGrayText">#909090</Color> <!--#272727 opacity 50%-->
+			<Color x:Key="appBlackOrder">#27272C</Color>
+
+
+			<Color x:Key="containerToAssembly">#03A9F4</Color>
+			<Color x:Key="containerInAssembly">#01579B</Color>
+			<Color x:Key="containerNoOrder">#9B9B9B</Color>
+
+			<!--<Color x:Key="appBlackText">#272727</Color>-->
+
+
+			<Style x:Key="entEnter" TargetType="Entry" >
+				<Setter Property="BackgroundColor" Value="{StaticResource appGrayBottom}" />
+				<Setter Property="PlaceholderColor" Value="{StaticResource appGrayPlaceholder}" />
+				<Setter Property="HeightRequest" Value="64" />
+				<Setter Property="HorizontalTextAlignment" Value="Center" />
+			</Style>
+			
+            <Style x:Name="labelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource appBlackTitle}" />
+				<Setter Property="FontFamily" Value="Roboto-Regular"/>
+				<Setter Property="FontSize" Value="17"></Setter>
+            </Style>
+
+			<Style x:Name="buttomStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="White" />
+				<Setter Property="FontFamily" Value="Roboto-Regular"/>
+				<Setter Property="FontSize" Value="18" />
+				<Setter Property="BackgroundColor" Value="{StaticResource appGreen}" />
+            </Style>
+
+			<Style x:Key="btnLogin" TargetType="Button">
+                <Setter Property="HeightRequest" Value="64" />
+            </Style>
+
+			<Style x:Key="btnMainProduct" TargetType="Button">
+                <Setter Property="HeightRequest" Value="98" />
+				<Setter Property="FontSize" Value="24" />
+				 <Setter Property="TextColor" Value="White" />
+            </Style>
+
+			<Style x:Name="boxViewStyle" TargetType="BoxView">
+				<Setter Property="HeightRequest" Value="1" />
+				<Setter Property="BackgroundColor" Value="{StaticResource appGrayLine}" />
+			</Style>
+
+			<Style x:Key="frameInfoStyle" TargetType="Frame">
+				<Setter Property="HasShadow" Value="false" />
+				<Setter Property="WidthRequest" Value="370" />
+				<Setter Property="HeightRequest" Value="165" />
+				<Setter Property="VerticalOptions" Value="Start" />
+				<Setter Property="Padding" Value="0" /> <!-- Почему то свойство не работает в стилях -->
+			</Style>
+
+
+
+
+			<ControlTemplate x:Key="MainTemplate">
+				<StackLayout Spacing="0">
+					<ContentPresenter VerticalOptions="FillAndExpand" />
+
+					<Grid VerticalOptions="End" HorizontalOptions="FillAndExpand" HeightRequest="60">
+						<ctrl:BottomInfoBlockView Grid.Row="0" Grid.Column="0" LblName="Фотостудия" LblPhone="+7 (495) 204-15-83" ImgIcon="icons/phone.png" />
+						<ctrl:BottomInfoBlockView Grid.Row="0" Grid.Column="1" LblName="Колл-центр" LblPhone="+7 (495) 204-15-83" ImgIcon="icons/phone.png" />
+						<ctrl:BottomInfoBlockView Grid.Row="0" Grid.Column="2" LblName="Сборщик" 	LblPhone="+7 (495) 204-15-83" ImgIcon="icons/phone.png" />
+					</Grid>
+				</StackLayout>
+			</ControlTemplate>
+		
+        </ResourceDictionary>
+	</Application.Resources>
+</Application>

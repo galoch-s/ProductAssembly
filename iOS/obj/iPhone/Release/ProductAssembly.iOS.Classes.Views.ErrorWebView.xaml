@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		x:Class="ProductAssembly.ErrorWebView">
+	<ContentView.Content>
+		<StackLayout Spacing="20" HorizontalOptions="Center">
+			<Label x:Name="lblRefresh" Text="Произошла ошибка на сервере" />
+			<Button Text="Обновить" WidthRequest="150" HorizontalOptions="Center" Clicked="Refresh" />
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>

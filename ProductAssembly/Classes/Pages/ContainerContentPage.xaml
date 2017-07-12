@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		x:Class="ProductAssembly.ContainerContentPage"
+		xmlns:xlabs="clr-namespace:XLabs.Forms.Controls"
+		xmlns:controls="clr-namespace:ProductAssembly"
+		Title="Назад">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem x:Name="tbarUser" Name="Выйти" Clicked="ExitUser"></ToolbarItem>
+        <ToolbarItem Icon="icons/logout.png" Clicked="ExitUser"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+	<ContentView x:Name="contentView" ControlTemplate="{StaticResource MainTemplate}">
+		<StackLayout x:Name="layoutMain" >
+			<StackLayout Padding="8,11" Spacing="15" >
+				<Label x:Name="lblTitle" Text="Контейнер" />
+				<Button Text="Сборка" BackgroundColor="{StaticResource appRed}" Clicked="OnClickCompile" Style="{StaticResource btnMainProduct}" />
+				<StackLayout x:Name="layoutCountCompleter" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+					<Label Text="Количество сборщиков на контейнер" FontSize="24" Margin="8,20" VerticalOptions="CenterAndExpand" />
+					<Button x:Name="btnAssign" Text="1" BackgroundColor="{StaticResource appGrayBottom}" HorizontalOptions="FillAndExpand" Clicked="OnClickAssign" TextColor="{StaticResource appBlackTitle}" Style="{StaticResource btnMainProduct}" />
+				</StackLayout>
+				<controls:ProductButtonView x:Name="productButtonView" />
+			</StackLayout>
+			<BoxView />
+			<controls:InfoProductView />
+		</StackLayout>
+	</ContentView>
+</ContentPage>

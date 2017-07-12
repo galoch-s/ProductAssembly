@@ -1,0 +1,73 @@
+﻿<Properties StartupConfiguration="{419000F9-6AD9-4ECE-B742-1C374C7DE9A2}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../../../ProductAssembly/Classes/ImageSave.cs">
+    <Files>
+      <File FileName="../../../../ProductAssembly/Classes/DataBase/LoadData.cs" Line="260" Column="47" />
+      <File FileName="../../../../ProductAssembly/Classes/ImageSave.cs" Line="36" Column="39" />
+      <File FileName="../../../../iOS/ClassToCrossPlatform/Picture.cs" Line="21" Column="5" />
+      <File FileName="../../../../ProductAssembly/Classes/Printing.cs" Line="190" Column="27" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ProductAssembly" expanded="True">
+            <Node name="ProductAssembly" expanded="True">
+              <Node name="Classes" expanded="True">
+                <Node name="Cells" expanded="True">
+                  <Node name="ProductCell.xaml" expanded="True" />
+                </Node>
+                <Node name="Data" expanded="True" />
+                <Node name="DataBase" expanded="True" />
+                <Node name="Interface" expanded="True" />
+                <Node name="ImageSave.cs" selected="True" />
+              </Node>
+              <Node name="Controls" expanded="True" />
+            </Node>
+            <Node name="ProductAssembly.iOS" expanded="True">
+              <Node name="ComponentReferenceFolder" expanded="True" />
+              <Node name="ClassToCrossPlatform" expanded="True" />
+              <Node name="Controls" expanded="True" />
+              <Node name="XLabs" expanded="True">
+                <Node name="Forms" expanded="True">
+                  <Node name="Controls" expanded="True">
+                    <Node name="GridView" expanded="True" />
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+          <Node name="SDWebImageSimpleSample-Classic" expanded="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.SDWebImageSimpleSample-Classic PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.CECAD5CC-1A25-4C35-B279-6BCA48F95DA7" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Cells/ContainerCell.xaml.cs" line="39" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/LoadData.cs" line="350" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="35" column="30" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="49" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="51" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="153" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/WebRequest/NetWorkClient.cs" line="194" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/WebRequest/NetWorkClient.cs" line="96" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/WebRequest/NetWorkClient.cs" line="100" column="5" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Extensions/NavigationPageExtansion.cs" line="13" column="3" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Extensions/NavigationPageExtansion.cs" line="18" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Extensions/NavigationPageExtansion.cs" line="23" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/WebRequest/WebRequestUtils.cs" line="73" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="16" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="84" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="142" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="33" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/LoadData.cs" line="248" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/iOS/ClassToCrossPlatform/Picture.cs" line="13" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/iOS/ClassToCrossPlatform/Picture.cs" line="30" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/iOS/Controls/FastImageRenderer.cs" line="49" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/ImageSave.cs" line="40" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

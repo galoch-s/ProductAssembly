@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	x:Class="ProductAssembly.OrderPositionView"
+	>
+	<ContentView.Content>
+		<StackLayout Spacing="0" >
+			
+			<StackLayout x:Name="layoutMain" Orientation="Horizontal" VerticalOptions="FillAndExpand" Spacing="0">
+				
+				<StackLayout.Resources>
+					<ResourceDictionary>
+						<Style x:Key="btnOrder" TargetType="Button">
+			                <Setter Property="HeightRequest" Value="39" />
+							<Setter Property="WidthRequest" Value="142"/>
+							<Setter Property="FontSize" Value="14" />
+							<Setter Property="TextColor" Value="White" />
+			            </Style>
+						
+						<Style x:Key="lblOrder" TargetType="Label">
+			                <Setter Property="TextColor" Value="{StaticResource appBlackOrder}" />
+							<Setter Property="FontFamily" Value="Roboto-Light"/>
+							<Setter Property="FontSize" Value="16" />
+							<Setter Property="VerticalOptions" Value="Center" />
+			            </Style>
+					</ResourceDictionary>
+				</StackLayout.Resources>
+
+
+				<StackLayout VerticalOptions="Center" Padding="10,0,0,0" WidthRequest="130" >
+					<Label TextColor="{StaticResource appBlue}" Style="{StaticResource lblOrder}" Text="{Binding Id, StringFormat='для ID: {0}'}" VerticalOptions="Center"/>
+					<Label Style="{StaticResource lblOrder}" Text="{Binding Size, StringFormat='размер: {0}'}" VerticalOptions="Center"/>
+					<Label Style="{StaticResource lblOrder}" Text="{Binding ProductQuantityOrderUnits, StringFormat='шаг товара: {0}'}" VerticalOptions="Center"/>
+				</StackLayout>
+				
+				<StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="10,0,10,0" Spacing="23">
+					<Frame x:Name="frame" OutlineColor="{StaticResource appGrayLine}" HasShadow="false" Padding="10, 0">
+						<StackLayout x:Name="layoutFact" Orientation="Horizontal" HeightRequest="39" Spacing="10">
+							<Label FontSize="20" Style="{StaticResource lblOrder}" WidthRequest="90" Text="По факту" />
+							<Label x:Name="lblQuantity" FontSize="20" Text="{Binding Quantity}" Style="{StaticResource lblOrder}" />
+							<Image x:Name="imgEditCount" Margin="0,0" Source="icons/edit.png" />
+						</StackLayout>
+					</Frame>
+					<StackLayout Orientation="Horizontal" HeightRequest="39" Padding="10, 0" Spacing="10">
+						<Label Style="{StaticResource lblOrder}" WidthRequest="90" Text="Заказано" />
+						<Label Style="{StaticResource lblOrder}" Text="{Binding FirstQuantity}" />
+					</StackLayout>
+				</StackLayout>
+				
+				<StackLayout x:Name="layoutBtn" VerticalOptions="Center" HorizontalOptions="End" Spacing="23">
+					<Button Style="{StaticResource btnOrder}" BackgroundColor="{StaticResource appRed}" Clicked="OnNullabled" Text="Нет и не будет" x:Name="btnNullabled" />
+					<Button Style="{StaticResource btnOrder}" BackgroundColor="{StaticResource appBlue}" Clicked="OnPrint" Text="Печать" />
+				</StackLayout>
+				
+			</StackLayout>
+			<BoxView x:Name="bvSeparator" HeightRequest="2" />
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>

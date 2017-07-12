@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xlabs:FastGridCell
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	x:Class="ProductAssembly.ContainerAdminCell"
+	xmlns:xlabs="clr-namespace:XLabs.Forms.Controls">
+	
+	<StackLayout BackgroundColor="White">
+		<Button x:Name="btn" Clicked="ContainerClick" WidthRequest="90" HeightRequest="60" TextColor="White" />
+	</StackLayout>
+</xlabs:FastGridCell>

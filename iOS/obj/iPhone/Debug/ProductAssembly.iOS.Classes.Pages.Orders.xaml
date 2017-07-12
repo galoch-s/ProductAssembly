@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		x:Class="ProductAssembly.Orders"
+		xmlns:Control="clr-namespace:ProductAssembly"
+		Title="Назад">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem x:Name="tbarUser" Name="Выйти" Clicked="ExitUser"></ToolbarItem>
+        <ToolbarItem Icon="icons/logout.png" Clicked="ExitUser"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+	<ContentView x:Name="contentView" ControlTemplate="{StaticResource MainTemplate}">
+		<StackLayout>
+			<StackLayout Orientation="Horizontal" Padding="8,20,8,0">
+				<Label x:Name="lblTitle" Text="Сборка. Контейнер" VerticalOptions="Center" /> <Label VerticalOptions="Center" x:Name="lblCountItems" />
+				<Button Text="Выставить ленту" FontSize="15" TextColor="{StaticResource appGrayText}" HeightRequest="39" WidthRequest="150"
+					HorizontalOptions="EndAndExpand" Clicked="NewStiker" BackgroundColor="{StaticResource appGrayBottom}" />
+			</StackLayout>
+			<StackLayout VerticalOptions="FillAndExpand">
+				<Control:ExtensionListView
+					x:Name="OrdersListView"
+					HasUnevenRows="true"
+					RowHeight="{x:Static Control:Constants.HeightRowOrder}"
+					SeparatorVisibility="None"
+					>
+
+					<Control:ExtensionListView.ItemTemplate>
+						<DataTemplate>
+							<Control:OrderCell />
+						</DataTemplate>
+					</Control:ExtensionListView.ItemTemplate>
+					<Control:ExtensionListView.Footer>
+						<StackLayout HeightRequest="400" >
+							<StackLayout x:Name="layoutPagination" Padding="8,10,8,20" >
+								<Button x:Name="btnCompletion" Text="Собрать" Clicked="OnCompiled" IsVisible="false"/>
+								<Button x:Name="btnCompletionForce" Text="Принудительное завершение сборки отчёта 2038. Собрано: 1. Назначено: 1" Margin="0,8" BackgroundColor="{StaticResource appBlue}" Clicked="OnCompiledForce" IsVisible="false"/>
+							</StackLayout>
+						</StackLayout>
+					</Control:ExtensionListView.Footer>
+				</Control:ExtensionListView>
+				<ActivityIndicator x:Name="indicator" IsRunning="true" IsVisible="false" />
+				<Control:ErrorWebView x:Name="errorView" VerticalOptions="CenterAndExpand" IsVisible="false" EventRefresh="OnRefresh" Padding="8" />
+			</StackLayout>
+		</StackLayout>
+	</ContentView>
+</ContentPage>

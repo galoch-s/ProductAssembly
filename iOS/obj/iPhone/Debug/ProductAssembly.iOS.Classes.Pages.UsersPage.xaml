@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		x:Class="ProductAssembly.UsersPage"
+		xmlns:xlabs="clr-namespace:XLabs.Forms.Controls"
+		xmlns:Control="clr-namespace:ProductAssembly"
+		Title="Назад">
+	
+	<ContentPage.ToolbarItems>
+		<ToolbarItem x:Name="tbarUser" Name="Выйти" Clicked="ExitUser"></ToolbarItem>
+        <ToolbarItem Icon="icons/logout.png" Clicked="ExitUser"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+	<ContentView x:Name="contentView" ControlTemplate="{StaticResource MainTemplate}">
+		<StackLayout x:Name="layoutMain" >
+			<StackLayout Orientation="Horizontal" Padding="8,20,8,0">
+				<Label x:Name="lblTitle" Text="Привязка учетных записей контейнерам" VerticalOptions="Center" /><Label x:Name="lblCountItems" VerticalOptions="Center" />
+				<Button x:Name="btnRecord" HorizontalOptions="EndAndExpand" HeightRequest="39" FontSize="15" WidthRequest="155"  
+					BackgroundColor="{StaticResource appGrayBottom}" TextColor="{StaticResource appGrayText}" Clicked="OnClickAllRecords" />
+			</StackLayout>
+
+			<Control:ErrorWebView x:Name="errorView" VerticalOptions="CenterAndExpand" IsVisible="false" />
+			<ActivityIndicator x:Name="indicator" IsRunning="true" IsVisible="false" VerticalOptions="CenterAndExpand" />
+			
+			<Control:ExtensionListView
+					x:Name="listView"
+					SeparatorVisibility="None"
+					RowHeight="74">
+				<Control:ExtensionListView.Header>
+					<StackLayout>
+						<StackLayout x:Name="layoutPaginationTop" VerticalOptions="Start" Padding="8,10,8,0" />
+						<StackLayout Orientation="Horizontal" Padding="8">
+							<Label Text="Идентификатор" Margin="18,0,0,0" WidthRequest="155" FontSize="13" VerticalOptions="Center" />
+							<Label Text="Контейнер" Margin="11,0" WidthRequest="120" FontSize="13" VerticalOptions="Center" />
+							<Label Text="Пользователь" WidthRequest="300" FontSize="13" VerticalOptions="Center" />
+						</StackLayout>
+					</StackLayout>
+				</Control:ExtensionListView.Header>
+				<Control:ExtensionListView.ItemTemplate>
+					<DataTemplate>
+						<Control:UserLoginCell />
+					</DataTemplate>
+				</Control:ExtensionListView.ItemTemplate>
+				<Control:ExtensionListView.Footer>
+					<StackLayout HeightRequest="400" >
+						<StackLayout x:Name="layoutPaginationBottom" Padding="8,10,8,20" >
+						</StackLayout>
+					</StackLayout>
+				</Control:ExtensionListView.Footer>
+			</Control:ExtensionListView>
+		</StackLayout>
+	</ContentView>
+</ContentPage>

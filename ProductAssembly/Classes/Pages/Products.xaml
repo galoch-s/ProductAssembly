@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:ctrl="clr-namespace:ProductAssembly"
+		x:Class="ProductAssembly.Products"
+		Title="Назад"
+		>
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Icon="icons/search.png" Clicked="GoToSearch" ></ToolbarItem>
+		<ToolbarItem x:Name="tbarUser" Name="Выйти" Clicked="ExitUser"></ToolbarItem>
+        <ToolbarItem Icon="icons/logout.png" Clicked="ExitUser"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+	<ContentView x:Name="contentView" ControlTemplate="{StaticResource MainTemplate}">
+		<StackLayout>
+			<StackLayout Orientation="Horizontal" Padding="8,20,8,0">
+				<Label x:Name="lblTitle" Text="товары контейнера" VerticalOptions="Center" /><Label x:Name="lblCountItems" VerticalOptions="Center" />
+				<Frame x:Name="frameFilter" OutlineColor="{StaticResource appGrayLine}" HeightRequest="39" Padding="0" HorizontalOptions="EndAndExpand" HasShadow="false" >
+					<StackLayout Orientation="Horizontal" HeightRequest="39" Padding="8" >
+						<Label Text="Отсортировать" VerticalOptions="Center" /><Image Source="icons/filter.png"/>
+					</StackLayout>
+				</Frame>
+			</StackLayout>
+			
+			<StackLayout x:Name="layoutListView" VerticalOptions="FillAndExpand">
+				
+				<ctrl:ExtensionListView
+					x:Name="ProductListView"
+					BackgroundColor="Transparent"
+					SeparatorVisibility="None"
+					>
+					<!--RowHeight="{x:Static Control:Constants.HeightRowProduct}"-->
+					<ctrl:ExtensionListView.Header>
+						<StackLayout x:Name="layoutPaginationTop" VerticalOptions="StartAndExpand" Padding="8,10,8,20" >
+						</StackLayout>
+					</ctrl:ExtensionListView.Header>
+					<ctrl:ExtensionListView.ItemTemplate>
+						<DataTemplate>
+							<ctrl:ProductCell />
+						</DataTemplate>
+					</ctrl:ExtensionListView.ItemTemplate>
+					<ctrl:ExtensionListView.Footer>
+						<StackLayout HeightRequest="400" >
+							<StackLayout x:Name="layoutPaginationBottom" Padding="8,10,8,20" >
+							</StackLayout>
+						</StackLayout>
+					</ctrl:ExtensionListView.Footer>
+				</ctrl:ExtensionListView>
+
+				<ActivityIndicator x:Name="indicator" IsRunning="true" VerticalOptions="CenterAndExpand" IsVisible="false" />
+				<ctrl:ErrorWebView x:Name="errorView" VerticalOptions="CenterAndExpand" IsVisible="false" EventRefresh="OnRefresh" Padding="8" />
+			</StackLayout>
+
+			
+		</StackLayout>
+	</ContentView>
+</ContentPage>

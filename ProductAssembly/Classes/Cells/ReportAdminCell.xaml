@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xlabs:FastGridCell 
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	x:Class="ProductAssembly.ReportAdminCell"
+	xmlns:xlabs="clr-namespace:XLabs.Forms.Controls">
+	
+	<StackLayout BackgroundColor="White">
+		<Frame x:Name="frame" OutlineColor="{StaticResource appRed}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HasShadow="false" Padding="0">
+			<Label x:Name="lblTitle" VerticalOptions="Center" HorizontalOptions="Center" />
+		</Frame>
+		
+		<!--<Button x:Name="btnNotInWork" Clicked="ContainerClick" WidthRequest="180" HeightRequest="60" BackgroundColor="{StaticResource appRed}" TextColor="White" IsVisible="false" />
+		<Button x:Name="btnInWork" Clicked="ContainerClick" WidthRequest="180" HeightRequest="60" BackgroundColor="White" TextColor="{StaticResource appBlackTitle}" 
+			BorderColor="{StaticResource appRed}" BorderWidth="1" IsVisible="false" />-->
+	</StackLayout>
+</xlabs:FastGridCell>

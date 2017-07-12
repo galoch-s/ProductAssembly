@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	x:Class="ProductAssembly.NewCompilerPage"
+	xmlns:Control="clr-namespace:ProductAssembly">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem x:Name="tbarUser" Name="Выйти" Clicked="ExitUser"></ToolbarItem>
+        <ToolbarItem Icon="icons/logout.png" Clicked="ExitUser"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<Style x:Key="entEnterCompiler" TargetType="Entry" BasedOn="{StaticResource entEnter}" >
+				<Setter Property="IsEnabled" Value="false"></Setter>
+				<Setter Property="HeightRequest" Value="50"></Setter>
+				<Setter Property="HorizontalTextAlignment" Value="Start"/>
+			</Style>
+		</ResourceDictionary>
+	</ContentPage.Resources>
+	
+	<ContentView x:Name="contentView" ControlTemplate="{StaticResource MainTemplate}">
+		<StackLayout x:Name="layoutMain" >
+			<StackLayout Orientation="Horizontal" Padding="8,20,8,0">
+				<Label x:Name="lblTitle" Text="Новый комплектовщик" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" />
+			</StackLayout>
+
+			<Control:ErrorWebView x:Name="errorView" VerticalOptions="CenterAndExpand" IsVisible="false" />
+			<ActivityIndicator x:Name="indicator" IsRunning="true" IsVisible="false" VerticalOptions="CenterAndExpand" />
+
+			<StackLayout HorizontalOptions="Center" Margin="0,20">
+				<Label  Text="Данная страница информационная." TextColor="{StaticResource appRed}" />
+				<Label  Text="Поля ниже не активны для ввода данных!"  TextColor="{StaticResource appRed}" />
+				<Label  Text="Для безопасности данных пароль"  TextColor="{StaticResource appRed}" />
+				<Label  Text="не будет храниться в открытом виде"   TextColor="{StaticResource appRed}" />
+			</StackLayout>
+			
+			<StackLayout WidthRequest="350" HorizontalOptions="Center">
+				<StackLayout Padding="0, 8">
+					<Label Text="Идентификатор"/>
+					<Entry Text="{Binding Id}" Style="{StaticResource entEnterCompiler}" />
+				</StackLayout>
+
+				<StackLayout Padding="0, 8">
+					<Label Text="Логин"/>
+					<Entry Text="{Binding Login}" Style="{StaticResource entEnterCompiler}"/>
+				</StackLayout>
+
+				<StackLayout Padding="0, 8">
+					<Label Text="Пароль"/>
+					<Entry Text="{Binding Password}" Style="{StaticResource entEnterCompiler}"/>
+				</StackLayout>
+
+				<StackLayout Padding="0, 8">
+					<Label Text="Имя"/>
+					<Entry Text="{Binding Name}" Style="{StaticResource entEnterCompiler}"/>
+				</StackLayout>
+
+				<StackLayout Padding="0, 8">
+					<Label Text="Фамилия"/>
+					<Entry Text="{Binding Surname}" Style="{StaticResource entEnterCompiler}"/>
+				</StackLayout>
+				<Button Text="Подтвердить" HeightRequest="50" Margin="0, 8" Clicked="OnClickSave" />
+				<Button Text="Отменить" HeightRequest="50" BackgroundColor="{StaticResource appRed}" Clicked="OnClickCansel"/>
+			</StackLayout>
+		</StackLayout>
+	</ContentView>
+</ContentPage>

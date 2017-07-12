@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		x:Class="ProductAssembly.ContainerPage"
+		xmlns:xlabs="clr-namespace:XLabs.Forms.Controls"
+		xmlns:cells="clr-namespace:ProductAssembly"
+		Title="Назад">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem x:Name="tbarUser" Name="Выйти" Clicked="ExitUser"></ToolbarItem>
+        <ToolbarItem Icon="icons/logout.png" Clicked="ExitUser"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+	<ContentView x:Name="contentView" ControlTemplate="{StaticResource MainTemplate}">
+		<StackLayout x:Name="layoutMain" VerticalOptions="FillAndExpand" >
+			
+			
+			<StackLayout x:Name="layoutReport" HeightRequest="170" Spacing="0" >
+				<Label Text="Отчеты" Margin="8" />
+				<cells:ErrorWebView x:Name="errorViewReport" VerticalOptions="CenterAndExpand" IsVisible="false" />
+				<ActivityIndicator x:Name="indicatorReport" IsVisible="false" IsRunning="true" VerticalOptions="CenterAndExpand" />
+				<xlabs:GridView
+					x:Name="ReportGridView"
+					RowSpacing="5"
+					ColumnSpacing="5"
+					ContentPaddingBottom="0"
+					ContentPaddingTop="0"
+					ContentPaddingLeft="0" 
+					ContentPaddingRight="0"
+					ItemWidth="180"
+					ItemHeight="60"
+					ItemSelected="OnItemSelected"
+					VerticalOptions="FillAndExpand"
+					SelectionEnabled="true">
+
+					<xlabs:GridView.ItemTemplate>
+						<DataTemplate>
+							<cells:ReportAdminCell />
+						</DataTemplate>
+					</xlabs:GridView.ItemTemplate>
+
+				</xlabs:GridView>
+				<BoxView />
+			</StackLayout>
+
+			<StackLayout VerticalOptions="FillAndExpand" Spacing="0">
+				<StackLayout x:Name="layoutTitleContainer" Orientation="Horizontal" >
+					<Label x:Name="lblContainer" Text="Контейнеры" Margin="8" />
+					<cells:ExtensionSearchBar x:Name="searchBar" HorizontalOptions="EndAndExpand" WidthRequest="500" BackgroundColor="Transparent" BorderWidth="0" 
+						Placeholder="Поиск по контейнерам" TextChanged="OnSearchProduct" />
+				</StackLayout>
+				<cells:ErrorWebView x:Name="errorViewContainer" VerticalOptions="CenterAndExpand" IsVisible="false" />
+				<StackLayout x:Name="layoutProgress" Spacing="20" VerticalOptions="CenterAndExpand" IsVisible="false">
+					<ActivityIndicator x:Name="indicatorContainer" IsRunning="true"  />
+					<Label x:Name="lblProgress" HorizontalOptions="Center" IsVisible="false" />
+				</StackLayout>
+				
+				<Label x:Name="lblMessage" IsVisible="false" FontSize="18" TextColor="{StaticResource appGrayText}" HorizontalOptions="Center" />
+				<xlabs:GridView
+					x:Name="ContainerGridView"
+					RowSpacing="5"
+					ColumnSpacing="5"
+					ContentPaddingBottom="0"
+					ContentPaddingTop="0"
+					ContentPaddingLeft="0"
+					ContentPaddingRight="0"
+					ItemWidth="90"
+					ItemHeight="60"
+					ItemSelected="OnItemSelected"
+					VerticalOptions="FillAndExpand"
+					SelectionEnabled="true">
+
+					<!--<xlabs:GridView.ItemTemplate>
+						<DataTemplate>
+							<cells:ContainerAdminCell />
+						</DataTemplate>
+					</xlabs:GridView.ItemTemplate>-->
+
+				</xlabs:GridView>
+
+			</StackLayout>
+			<Label x:Name="lblVersion" HorizontalOptions="End" FontSize="12" Margin="8,0" />
+		</StackLayout>
+	</ContentView>
+</ContentPage>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		x:Class="ProductAssembly.MainCompeterPage"
+		xmlns:xlabs="clr-namespace:XLabs.Forms.Controls"
+		xmlns:cells="clr-namespace:ProductAssembly"
+		x:Name="_this"
+		Title="Назад">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem x:Name="tbarUser" Name="Выйти" Clicked="ExitUser"></ToolbarItem>
+        <ToolbarItem Icon="icons/logout.png" Clicked="ExitUser"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+	
+	<ContentView x:Name="contentView" ControlTemplate="{StaticResource MainTemplate}">
+		
+		<StackLayout x:Name="layoutMain" VerticalOptions="FillAndExpand" >
+			<cells:ErrorWebView x:Name="errorViewReport" VerticalOptions="CenterAndExpand" IsVisible="false" />
+			<ActivityIndicator x:Name="indicatorReport" IsVisible="false" IsRunning="true" VerticalOptions="CenterAndExpand" />
+			
+			<StackLayout x:Name="layoutReport" HeightRequest="170" Spacing="0" >
+				<Label Text="Выберите отчет" Margin="8" />
+				<xlabs:GridView
+					x:Name="ReportGridView"
+					RowSpacing="5"
+					ColumnSpacing="5"
+					ContentPaddingBottom="0"
+					ContentPaddingTop="0"
+					ContentPaddingLeft="0" 
+					ContentPaddingRight="0"
+					ItemWidth="180"
+					ItemHeight="60"
+					ItemSelected="OnItemSelected"
+					VerticalOptions="FillAndExpand"
+					SelectionEnabled="true">
+
+					<xlabs:GridView.ItemTemplate>
+						<DataTemplate>
+							<cells:ReportAdminCell  />
+						</DataTemplate>
+					</xlabs:GridView.ItemTemplate>
+
+				</xlabs:GridView>
+				<BoxView />
+			</StackLayout>
+
+			<Label x:Name="lblVersion" VerticalOptions="EndAndExpand" HorizontalOptions="End" FontSize="12" Margin="8,0" />
+		</StackLayout>
+		
+	</ContentView>
+</ContentPage>

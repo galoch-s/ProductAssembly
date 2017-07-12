@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ProductAssembly.ConnectSetting">
+	<ContentPage.Content>
+		<StackLayout>
+			<Label x:Name="lblAddres" Text="Addres" />
+			<Entry x:Name="entAddres" Text="192.168.0.1" />
+			
+			<Label x:Name="lblPort" Text="Port" />
+			<Entry x:Name="entPort" Text="10000"/>
+			
+			<Label x:Name="lblSsid" Text="Ssid" />
+			<Entry x:Name="entSsid" Text="HUAWEI-E5220-b201"/>
+			
+			<Label x:Name="lblPassword" Text="Password" />
+			<Entry x:Name="entPassword" Text="Y217MQQF"/>
+			
+			<Button Clicked="Send" Text="Connect" />
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

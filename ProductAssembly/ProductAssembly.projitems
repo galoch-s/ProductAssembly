@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{39E93D00-1B8C-460F-A876-D9DD09405001}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>ProductAssembly</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Pages\LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Pages\ProductAssemblyPage.xaml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Views\HeaderView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Views\BottomInfoBlockView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Pages\MainContainerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Views\ContainerView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Cells\ContainerCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Pages\Products.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Cells\ProductCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Cells\OrderCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Pages\Orders.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Cells\OrderSizeCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Views\ReportView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Pages\SearchPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Views\ErrorWebView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Pages\ConnectSetting.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Pages\ContainerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Pages\MainAdminPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Views\InfoProductView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Views\ProductButtonView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Cells\ContainerAdminCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Cells\ReportAdminCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Pages\UsersPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Cells\UserLoginCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Pages\ContainerContentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Pages\CompilerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Cells\CompilerCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Pages\NewCompilerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Pages\MainCompeterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Views\OrderPositionView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\GroupsAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\WebRequest\WebRequestUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\WebRequest\UrlRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\WebRequest\Api.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\DataBase\Session.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Pages\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\SizeArticle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\Product.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\Manufacturer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\WebRequest\NetWorkClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\UserRole.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\DataBase\SqlConnect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\DataBase\ISQLite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Pages\ProductAssemblyPage.xaml.cs">
+      <DependentUpon>ProductAssemblyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Views\HeaderView.xaml.cs">
+      <DependentUpon>HeaderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Views\BottomInfoBlockView.xaml.cs">
+      <DependentUpon>BottomInfoBlockView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Printing.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\IBarcodeService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Pages\MainContainerPage.xaml.cs">
+      <DependentUpon>MainContainerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Views\ContainerView.xaml.cs">
+      <DependentUpon>ContainerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)XLabs\GridEventArgs{T}.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XLabs\Forms\Controls\FastGridCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XLabs\Forms\Controls\GridView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Cells\ContainerCell.xaml.cs">
+      <DependentUpon>ContainerCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Pages\Products.xaml.cs">
+      <DependentUpon>Products.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Enums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Cells\ProductCell.xaml.cs">
+      <DependentUpon>ProductCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\Order.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Cells\OrderCell.xaml.cs">
+      <DependentUpon>OrderCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Pages\Orders.xaml.cs">
+      <DependentUpon>Orders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\FastCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\FastImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\IFastCellCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\IScrollAwareElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\PageViewContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ViewEffectExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Extensions\PointExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Extensions\ViewExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Cells\OrderSizeCell.xaml.cs">
+      <DependentUpon>OrderSizeCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Extensions\ExtensionListView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\ProductDescription.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\IDisplayAlertEdit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\ProductOptionValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\ProductOption.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\ResultEditProduct.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\Attribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Views\ReportView.xaml.cs">
+      <DependentUpon>ReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Extensions\CustomNavigation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Pages\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Controls\Pagination.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Interface\INetworkConnection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Views\ErrorWebView.xaml.cs">
+      <DependentUpon>ErrorWebView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Pages\ConnectSetting.xaml.cs">
+      <DependentUpon>ConnectSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\VersionApi.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Pages\ContainerPage.xaml.cs">
+      <DependentUpon>ContainerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Pages\MainAdminPage.xaml.cs">
+      <DependentUpon>MainAdminPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Views\InfoProductView.xaml.cs">
+      <DependentUpon>InfoProductView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Views\ProductButtonView.xaml.cs">
+      <DependentUpon>ProductButtonView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Cells\ContainerAdminCell.xaml.cs">
+      <DependentUpon>ContainerAdminCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Cells\ReportAdminCell.xaml.cs">
+      <DependentUpon>ReportAdminCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\ContainerAdmin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\ReportAdmin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Pages\UsersPage.xaml.cs">
+      <DependentUpon>UsersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Cells\UserLoginCell.xaml.cs">
+      <DependentUpon>UserLoginCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\UserContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Pages\ContainerContentPage.xaml.cs">
+      <DependentUpon>ContainerContentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Extensions\ExtensionSearchBar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\DeviceOnNetwork.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Pages\CompilerPage.xaml.cs">
+      <DependentUpon>CompilerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Cells\CompilerCell.xaml.cs">
+      <DependentUpon>CompilerCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\Compiler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Pages\NewCompilerPage.xaml.cs">
+      <DependentUpon>NewCompilerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\CompilerGenerate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\DataBase\CompilerDB.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\DataBase\DataBaseUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\DataBase\LoadData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Pages\MainCompeterPage.xaml.cs">
+      <DependentUpon>MainCompeterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\OrderPosition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\ProductInOrder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Views\OrderPositionView.xaml.cs">
+      <DependentUpon>OrderPositionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\ImageUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Interface\IPicture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\RequestForServer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\ReportJson.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\ProductReport.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\ProductReportAttributes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\SendMessageToServer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\DataForSql.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\DataForUrlRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Interface\IPowerManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\CompiledInReport.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Extensions\WrappedButton.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Classes\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Classes\Data\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Classes\WebRequest\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Classes\Pages\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Classes\DataBase\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Classes\Views\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Classes\Cells\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Classes\Controls\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Classes\Interface\" />
+  </ItemGroup>
+</Project>

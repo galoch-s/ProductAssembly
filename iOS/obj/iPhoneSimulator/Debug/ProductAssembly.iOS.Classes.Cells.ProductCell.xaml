@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<controls:FastCell
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		x:Class="ProductAssembly.ProductCell"
+		xmlns:controls="clr-namespace:ProductAssembly.Controls">
+
+	<StackLayout x:Name="layoutMain" Padding="8,0,8,13" VerticalOptions="FillAndExpand">
+		<StackLayout.Resources>
+			<ResourceDictionary>
+				<Style x:Key="btnProductHeader" TargetType="Button">
+	                <Setter Property="HeightRequest" Value="44" />
+					<Setter Property="WidthRequest" Value="140"/>
+					<Setter Property="TextColor" Value="White"/>
+					<Setter Property="HorizontalOptions" Value="Start"/>
+	            </Style>
+
+				<Style x:Key="btnProductDo" TargetType="Button">
+	                <!--<Setter Property="FontSize" Value="16" />-->
+					<Setter Property="HeightRequest" Value="39"/>
+					<Setter Property="WidthRequest" Value="227"/>
+					<Setter Property="TextColor" Value="White"/>
+					<Setter Property="HorizontalOptions" Value="Start"/>
+	            </Style>
+				
+
+			</ResourceDictionary>
+		</StackLayout.Resources>
+		
+		<Frame x:Name="frame" OutlineColor="{StaticResource appRed}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HasShadow="false" Padding="0">
+			<StackLayout Orientation="Horizontal" Padding="0,20,0,0" >
+				<!-- ***** Картинка -->
+				<StackLayout HorizontalOptions="Start" WidthRequest="200" >
+					<controls:FastImage x:Name="ImageView" HorizontalOptions="Center" VerticalOptions="Start" />
+				</StackLayout>
+				<!-- ***** Информация, цена, удалить/восстановить, скидка -->
+				<StackLayout Spacing="12" HorizontalOptions="FillAndExpand">
+					<!--<Label x:Name="lblDate" Text="{Binding DataAdd, StringFormat='{0:d MMMM yyyy}'}" />-->
+					<StackLayout Spacing="12" HorizontalOptions="Start" HeightRequest="30">
+						<Label x:Name="lblDate" TextColor="{StaticResource appGrayText}" FontSize="14" />
+						<BoxView/>
+					</StackLayout>
+					<Label Text="{Binding Model, StringFormat='Арт. {0}'}" TextColor="{StaticResource appBlackTitle}" FontSize="14" />
+					<Label Text="{Binding Name}" TextColor="{StaticResource appGrayText}" FontSize="14" />
+					<StackLayout x:Name="layoutBtn" Orientation="Horizontal">
+						<Button x:Name="btnPrice" Margin="0,31,0,0" TextColor="White" Text="{Binding PriceColl, StringFormat='{0} р.'}" Style="{StaticResource btnProductHeader}"
+							BackgroundColor="{StaticResource appBlue}" Clicked="OnPrice" />
+						<Button x:Name="btnSale" Margin="0,31,0,0" TextColor="Black" Text="Скидка 10%" Style="{StaticResource btnProductHeader}"
+							BorderColor="{StaticResource appGrayLine}" BorderWidth="1" BackgroundColor="White" Clicked="OnSale" />
+					</StackLayout>
+					<Button x:Name="btnDelete" Text="Удалить" Style="{StaticResource btnProductHeader}" Clicked="OnDelete" BackgroundColor="{StaticResource appRed}"/>
+					<Button x:Name="btnRestore" Text="Восстановить" Style="{StaticResource btnProductHeader}" Clicked="OnRestore" BackgroundColor="{StaticResource appGreen}"/>
+				</StackLayout>
+				<!-- ***** Размеры -->
+				<StackLayout HorizontalOptions="End" VerticalOptions="FillAndExpand" Padding="0,0,21,0" >
+					
+					<StackLayout x:Name="layoutSizeTitle" Spacing="12" Padding="32,0,0,0" HorizontalOptions="Start" HeightRequest="30">
+						<StackLayout Orientation="Horizontal" VerticalOptions="Start" >
+							<Label Text="Размеры" TextColor="{StaticResource appGrayText}" FontSize="14" />
+							<Image Source="icons/productClose" Margin="10,0,0,0" />
+							<Label Text="(нет)" TextColor="{StaticResource appGrayText}" FontSize="14" />
+							<Image Source="icons/productOpen" Margin="10,0,0,0"/>
+							<Label Text="(есть)" TextColor="{StaticResource appGrayText}" FontSize="14" />
+						</StackLayout>
+						<BoxView/>
+					</StackLayout>
+						
+					<StackLayout x:Name="layoutSize" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Spacing="24" Margin="0,0">
+						
+					</StackLayout>
+				</StackLayout>
+			</StackLayout>
+		</Frame>
+	</StackLayout>
+</controls:FastCell>

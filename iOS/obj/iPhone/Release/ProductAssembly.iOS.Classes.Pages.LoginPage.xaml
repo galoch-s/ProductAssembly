@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		x:Class="ProductAssembly.LoginPage"
+		xmlns:local="clr-namespace:ProductAssembly"
+		Title="Вход"
+		Icon="icons/Logo.png" >
+	<ContentPage.Padding>
+		<OnPlatform x:TypeArguments="Thickness"
+			iOS="0, 20, 0, 0"
+			Android="0, 0, 0, 0"
+			WinPhone="0, 0, 0, 0" />
+	</ContentPage.Padding>
+	<ContentPage.ToolbarItems>
+		<!--<ToolbarItem Name="Войти"></ToolbarItem>
+        <ToolbarItem Icon="icons/login.png"></ToolbarItem>-->
+    </ContentPage.ToolbarItems>
+	<ContentPage.Content>
+		
+		<StackLayout x:Name = "layoutMain"
+				HorizontalOptions = "FillAndExpand"
+				VerticalOptions = "FillAndExpand">
+			
+
+			<local:HeaderView x:Name="headerView">
+		 		<local:HeaderView.ContainerContent>
+					
+					<StackLayout VerticalOptions = "FillAndExpand">
+						<ActivityIndicator x:Name="indicator" IsVisible="false" IsRunning="true" VerticalOptions="CenterAndExpand" />
+			          	<StackLayout x:Name="layoutContent" VerticalOptions="Center" Spacing="32" HorizontalOptions="Center" WidthRequest="370">
+				            <Label Text="Вход" FontSize="17" HorizontalOptions="Center" Margin="0, 32"/>
+							<Entry x:Name = "entEmail" Style="{StaticResource entEnter}" Placeholder = "e-mail" />
+							<Entry x:Name = "entPassword" Style="{StaticResource entEnter}" Placeholder = "пароль" IsPassword="true" />
+							<Button x:Name = "btnLogin" Text="войти" Clicked="OnLogin" HeightRequest="64" />
+							<Button x:Name = "btnCansel" Text="отмена" Clicked="OnCansel" BackgroundColor="White" TextColor="{StaticResource appGrayPlaceholder}" HeightRequest="64" />
+			          	</StackLayout>
+					</StackLayout>
+					
+		        </local:HeaderView.ContainerContent>
+			</local:HeaderView>
+			
+
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

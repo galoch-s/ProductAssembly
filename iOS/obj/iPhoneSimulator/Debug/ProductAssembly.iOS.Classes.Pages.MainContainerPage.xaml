@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		x:Class="ProductAssembly.MainContainerPage"
+		xmlns:xlabs="clr-namespace:XLabs.Forms.Controls"
+		xmlns:cells="clr-namespace:ProductAssembly"
+		Title="Назад"
+		Icon="icons/Logo.png" >
+	<ContentPage.ToolbarItems>
+		<ToolbarItem x:Name="tbarUser" Name="Выйти" Clicked="ExitUser"></ToolbarItem>
+        <ToolbarItem Icon="icons/logout.png" Clicked="ExitUser"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+	<ContentView x:Name="contentView" ControlTemplate="{StaticResource MainTemplate}">
+		
+		<StackLayout x:Name="layoutMain" VerticalOptions="FillAndExpand" >
+			<cells:ErrorWebView x:Name="errorView" VerticalOptions="CenterAndExpand" IsVisible="false" />
+			<StackLayout x:Name="layoutProgress" Spacing="20" VerticalOptions="CenterAndExpand" IsVisible="false">
+				<ActivityIndicator x:Name="indicator" IsRunning="true" />
+				<Label x:Name="lblProgress" HorizontalOptions="Center" IsVisible="false" />
+			</StackLayout>
+			
+			<StackLayout x:Name="headerView" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Spacing="0" >
+            	<Label x:Name="lblName" Text = "Контейнер. Отчеты для сборки" Margin="8,11"></Label>
+				<ActivityIndicator x:Name="indicatorGrid" VerticalOptions="CenterAndExpand" IsRunning="true" IsVisible="false" />
+				<StackLayout VerticalOptions="FillAndExpand">
+					<xlabs:GridView
+						x:Name="gridView"
+						RowSpacing="5"
+						ColumnSpacing="5"
+						ContentPaddingBottom="0"
+						ContentPaddingTop="6"
+						ContentPaddingLeft="0"
+						ContentPaddingRight="0"
+						ItemWidth="180"
+						ItemHeight="60"
+						VerticalOptions="FillAndExpand"
+						SelectionEnabled="true">
+<!--						HeightRequest="200"-->
+						<!--ItemSelected="OnItemSelected"-->
+					</xlabs:GridView>
+				</StackLayout>
+				<BoxView></BoxView>
+				<StackLayout HeightRequest="293" Padding="8,0" Spacing="15" >
+					<Label Text = "Обработка товара" Margin="0, 11, 0, 4"></Label>
+					<cells:ProductButtonView x:Name="productButtonView" />
+				</StackLayout>
+				<BoxView></BoxView>
+				<cells:InfoProductView />
+				<Label x:Name="lblCountMinutes" HorizontalOptions="End" FontSize="12" Margin="8,0" />
+				<Label x:Name="lblVersion" HorizontalOptions="End" FontSize="12" Margin="8,0" />
+          	</StackLayout>
+			
+		</StackLayout>
+		
+	</ContentView>
+
+	
+	
+	<!--<ContentPage.Content>
+		<StackLayout x:Name = "layoutMain"
+				HorizontalOptions = "FillAndExpand"
+				VerticalOptions = "FillAndExpand">
+			<cells:ErrorWebView x:Name="errorView" VerticalOptions="CenterAndExpand" IsVisible="false" />
+			<ActivityIndicator x:Name="indicator" IsVisible="false" IsRunning="true" VerticalOptions="CenterAndExpand" />
+			
+			<local:HeaderView x:Name="headerView">
+				<local:HeaderView.ContainerContent>
+		          	<StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Spacing="0" >
+		            	<Label x:Name="lblName" Text = "Контейнер. Отчеты для сборки" Margin="8,11"></Label>
+						<StackLayout x:Name="layoutContainer" VerticalOptions = "FillAndExpand">
+							
+						</StackLayout>
+						<BoxView></BoxView>
+						<StackLayout HeightRequest="293" Padding="8,0" Spacing="15" >
+							<Label Text = "Обработка товара" Margin="0, 11, 0, 4"></Label>
+							<local:ProductButtonView x:Name="productButtonView" />
+						</StackLayout>
+						<BoxView></BoxView>
+						<local:InfoProductView />
+						<Label x:Name="lblVersion" HorizontalOptions="End" FontSize="12" Margin="8,0" />
+		          	</StackLayout>
+		        </local:HeaderView.ContainerContent>
+			</local:HeaderView>
+			
+
+		</StackLayout>
+	</ContentPage.Content>-->
+</ContentPage>

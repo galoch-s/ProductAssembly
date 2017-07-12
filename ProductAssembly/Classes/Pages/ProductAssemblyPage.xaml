@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:ctrl="clr-namespace:ProductAssembly"
+		x:Class="ProductAssembly.ProductAssemblyPage"
+		Title="Назад">
+	<ContentPage.Padding>
+		<OnPlatform x:TypeArguments="Thickness"
+			iOS="0, 20, 0, 0"
+			Android="0, 0, 0, 0"
+			WinPhone="0, 0, 0, 0" />
+	</ContentPage.Padding>
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Name="Выйти"></ToolbarItem>
+        <ToolbarItem Icon="icons/logout.png"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+	<ContentPage.Content>
+
+		
+
+		
+		<StackLayout x:Name = "layoutMain"
+				HorizontalOptions = "FillAndExpand"
+				VerticalOptions = "FillAndExpand">
+
+			<ctrl:HeaderView x:Name="headerView">
+				 <ctrl:HeaderView.ContainerContent>
+		          <StackLayout VerticalOptions="Center" Spacing="32" HorizontalOptions="Center" WidthRequest="370">
+		            <Label Text="Вход" FontSize="17" HorizontalOptions="Center" Margin="0, 32"/>
+					
+		          </StackLayout>
+		        </ctrl:HeaderView.ContainerContent>
+			</ctrl:HeaderView>
+			
+
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

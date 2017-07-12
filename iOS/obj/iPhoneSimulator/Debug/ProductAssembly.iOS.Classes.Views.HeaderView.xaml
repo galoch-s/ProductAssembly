@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		x:Class="ProductAssembly.HeaderView"
+		xmlns:ctrl="clr-namespace:ProductAssembly"
+		VerticalOptions="FillAndExpand">
+	<ContentView.Resources>
+		<!--<ResourceDictionary>
+			<ControlTemplate x:Key="MainTemplate">
+				<StackLayout>
+					<ContentPresenter />
+
+					<Grid VerticalOptions="End" HorizontalOptions="FillAndExpand" HeightRequest="60">
+						<ctrl:BottomInfoBlockView Grid.Row="0" Grid.Column="0" LblName="Фотостудия" LblPhone="+7 (495) 204-15-83" ImgIcon="icons/phone.png" />
+						<ctrl:BottomInfoBlockView Grid.Row="0" Grid.Column="1" LblName="Колл-центр" LblPhone="+7 (495) 204-15-83" ImgIcon="icons/phone.png" />
+						<ctrl:BottomInfoBlockView Grid.Row="0" Grid.Column="2" LblName="Сборщик" 	LblPhone="+7 (495) 204-15-83" ImgIcon="icons/phone.png" />
+					</Grid>
+				</StackLayout>
+			</ControlTemplate>
+		</ResourceDictionary>-->
+	</ContentView.Resources>
+	
+	<ContentView.Content>
+		<StackLayout x:Name="layoutM" Spacing = "0" >
+			<!--<StackLayout HeightRequest="44">
+				<Grid HeightRequest="43" RowSpacing = "0" ColumnSpacing = "0" Padding="8, 0">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="25*"></ColumnDefinition>
+						<ColumnDefinition Width="50*"></ColumnDefinition>
+						<ColumnDefinition Width="25*"></ColumnDefinition>
+					</Grid.ColumnDefinitions>
+
+					<Image Grid.Row="0" Grid.Column="1" x:Name="ImgLogo" VerticalOptions="Center" HorizontalOptions="Center" Source="icons/Logo.png" />
+					<StackLayout x:Name="layoutEnter" Grid.Row="0" Grid.Column="2" Orientation="Horizontal" IsVisible="false">
+						<Label VerticalOptions="Center" HorizontalOptions="EndAndExpand" 
+							Text="Войти" FontSize="14" TextColor="{StaticResource appBlackTop}"/>
+						<Image VerticalOptions="Center" HorizontalOptions="End" Source="icons/login.png"/>
+					</StackLayout>
+					<StackLayout x:Name="layoutExit" Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
+						<Label VerticalOptions="Center" HorizontalOptions="EndAndExpand" 
+							Text="Выйти" FontSize="14" TextColor="{StaticResource appBlackTop}"/>
+						<Image VerticalOptions="Center" HorizontalOptions="End" Source="icons/logout.png"/>
+					</StackLayout>
+				</Grid>
+				<BoxView />
+			</StackLayout>-->
+			
+			<StackLayout x:Name="ContentFrame" VerticalOptions = "FillAndExpand" ></StackLayout>
+			
+			<Grid 
+					VerticalOptions="End" 
+					HorizontalOptions="FillAndExpand"
+					HeightRequest="60">
+				<ctrl:BottomInfoBlockView Grid.Row="0" Grid.Column="0" LblName="Фотостудия" LblPhone="+7 (495) 204-15-83" ImgIcon="icons/phone.png" />
+				<ctrl:BottomInfoBlockView Grid.Row="0" Grid.Column="1" LblName="Колл-центр" LblPhone="+7 (495) 204-15-83" ImgIcon="icons/phone.png" />
+				<ctrl:BottomInfoBlockView Grid.Row="0" Grid.Column="2" LblName="Сборщик" 	LblPhone="+7 (495) 204-15-83" ImgIcon="icons/phone.png" />
+				
+			</Grid>
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ProductAssembly.InfoProductView">
+	<ContentView.Content>
+		
+		<StackLayout HeightRequest="253" Padding="8,0" Spacing="15">
+			<Label Text = "Инструкция по обработке товара" Margin="0, 11, 0, 4"></Label>
+			<StackLayout Orientation="Horizontal">
+				<Frame Style="{StaticResource frameInfoStyle}" OutlineColor="{StaticResource appGreen}" Padding="0" >
+					<StackLayout Padding="8, 17" Spacing="0">
+						<Label Margin="12,0,0,4" TextColor="{StaticResource appGreen}" FontSize="15" Text="Зеленым фоном отмечены товары," />
+						<Label Margin="12,0,0,0" Text="КОТОРЫЕ ПРОДАЮТСЯ НА САЙТЕ" />
+						<Frame Padding="8,0" Margin="0,14" HasShadow="false" BackgroundColor="{StaticResource appRed}" HeightRequest="29" >
+							<Label VerticalOptions="Center" TextColor="White" FontSize="14" Text="Кнопка удалить товар на сайте" />
+						</Frame>
+						<Frame Padding="8,0" Margin="0" HasShadow="false" BackgroundColor="{StaticResource appRed}" HeightRequest="29" >
+							<Label VerticalOptions="Center" TextColor="White" FontSize="14" Text="Кнопка удалить размер товара на сайте" />
+						</Frame>
+					</StackLayout>
+				</Frame>
+				<Frame Style="{StaticResource frameInfoStyle}" OutlineColor="{StaticResource appRed}" Padding="0" >
+					<StackLayout Padding="8, 17" Spacing="0">
+						<Label Margin="12,0,0,4" TextColor="{StaticResource appRed}" FontSize="15" Text="Красным фоном отмечены товары," />
+						<Label Margin="12,0,0,0" FontSize="17" Text="КОТОРЫЕ НЕ ПРОДАЮТСЯ НА САЙТЕ" />
+						<Frame Padding="8,0" Margin="0,14" HasShadow="false" BackgroundColor="{StaticResource appGreen}" HeightRequest="29" >
+							<Label VerticalOptions="Center" TextColor="White" FontSize="14" Text="Кнопка восстановить товар на сайте" />
+						</Frame>
+						<Frame Padding="8,0" Margin="0" HasShadow="false" BackgroundColor="{StaticResource appGreen}" HeightRequest="29" >
+							<Label VerticalOptions="Center" TextColor="White" FontSize="14" Text="Кнопка восстановить размер товара на сайте" />
+						</Frame>
+					</StackLayout>
+				</Frame>
+			</StackLayout>
+			<!--<Label x:Name="lblVersion" HorizontalOptions="End" FontSize="12" Margin="8,0" />-->
+		</StackLayout>
+		
+	</ContentView.Content>
+</ContentView>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<controls:FastCell 
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	x:Class="ProductAssembly.CompilerCell"
+	xmlns:controls="clr-namespace:ProductAssembly.Controls">
+
+	<StackLayout Padding="8,7">
+		<Frame x:Name="frameContainer" Style="{StaticResource frameInfoStyle}" OutlineColor="{StaticResource appRed}" Padding="0" >
+			<StackLayout Orientation="Horizontal" Padding="8">
+				<Label Text="{Binding Id}" Margin="18,0,0,0" WidthRequest="100" FontSize="16" VerticalOptions="Center" />
+				<Label Text="{Binding Email}" Margin="11,0" WidthRequest="140" FontSize="16" VerticalOptions="Center" />
+				<Label Text="{Binding Firstname}" WidthRequest="160" FontSize="16" VerticalOptions="Center" />
+				<Label Text="{Binding Lastname}" WidthRequest="160" FontSize="16" VerticalOptions="Center" />
+				<Button Text="Изменить" BackgroundColor="{StaticResource appRed}" Clicked="OnClickPassword" WidthRequest="89" FontSize="16" HeightRequest="39" VerticalOptions="Center" />
+			</StackLayout>
+		</Frame>
+	</StackLayout>
+	
+</controls:FastCell>
