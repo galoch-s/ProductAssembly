@@ -15,11 +15,15 @@ namespace ProductAssembly
 		Pagination paginationTop;
 		Pagination paginationBottom;
 
+		LoadData loadData;
+
 		int countRecords;
 
 		public UsersPage(EventHandler eventLogin)
 		{
 			InitializeComponent();
+			loadData = new LoadData();
+
 			btnRecord.Text = MessageApl.BtnAllRecord;
 
 			EventLogin = eventLogin;
@@ -60,74 +64,83 @@ namespace ProductAssembly
 
 		void Show(bool isAll)
 		{
-			listView.IsVisible = false;
 			indicator.IsVisible = true;
+			listView.IsVisible = false;
 
 			Task.Run(async () => {
 				await Task.Delay(10);
-				int skip = (currentPage - 1) * XPagination.CountElementToPage;
-				int totalCount = await DataBaseUtils<UserContainer>.GetCountAsync();
-				countRecords = totalCount;
-				int countPage;
-				if (isAll)
-					countPage = 1;
-				else
-					countPage = (int)Math.Ceiling((double)totalCount / XPagination.CountElementToPage);// + 1;
+				loadData.LoadUserContainers(
+					(obj, compiler) => {
+						Task.Run(async () => {
+							int skip = (currentPage - 1) * XPagination.CountElementToPage;
+							int totalCount = await UserContainer.GetCountAsync(User.Singleton.TypeContainer);
+							//int totalCount = await DataBaseUtils<UserContainer>.GetCountAsync(g => g.TypeContainer == User.Singleton.TypeContainer);
+							countRecords = totalCount;
+							int countPage;
+							if (isAll)
+								countPage = 1;
+							else
+								countPage = (int)Math.Ceiling((double)totalCount / XPagination.CountElementToPage);// + 1;
 
-				List<UserContainer> entityList;
-				if (isAll) {
-					entityList = await DataBaseUtils<UserContainer>.GetAllWithChildrenAsync(null, g => g.Id, true);
-				} else
-					entityList = await DataBaseUtils<UserContainer>.GetAllWithChildrenAsync(null,
-					   g => g.Id,
-					   true,
-					   XPagination.CountElementToPage, skip
-				   );
-				Device.BeginInvokeOnMainThread(() => {
-					int beginRecords = (currentPage - 1) * XPagination.CountElementToPage + 1;
-					int endRecords;
-					if (currentPage == countPage)
-						endRecords = totalCount;
-					else
-						endRecords = currentPage * entityList.Count;
+							List<UserContainer> entityList;
+							if (isAll) {
+								entityList = await UserContainer.GetItemListAsync(User.Singleton.TypeContainer, g => g.Id, true);
+							} else
+								entityList = await UserContainer.GetItemListAsync(User.Singleton.TypeContainer,
+							   g => g.Id,
+							   true,
+							   XPagination.CountElementToPage, skip
+						   );
+							Device.BeginInvokeOnMainThread(() => {
+								int beginRecords = (currentPage - 1) * XPagination.CountElementToPage + 1;
+								int endRecords;
+								if (currentPage == countPage)
+									endRecords = totalCount;
+								else
+									endRecords = currentPage * entityList.Count;
 
-					if (countPage == 1) {
-						lblCountItems.Text = string.Format("| всего {0} записей", totalCount);
-					} else {
-						if (countPage > 1)
-							lblCountItems.Text = string.Format(" | записей {0}-{1} из {2}", beginRecords, endRecords, totalCount);
-						else
-							lblCountItems.Text = string.Format(" | записей {0}-{1}", beginRecords, totalCount);
-					}
+								if (countPage == 0) {
+									lblCountItems.Text = string.Format("| всего {0} записей", totalCount);
+								} else {
+									if (countPage > 1)
+										lblCountItems.Text = string.Format(" | записей {0}-{1} из {2}", beginRecords, endRecords, totalCount);
+									else
+										lblCountItems.Text = string.Format(" | записей {0}-{1}", beginRecords, totalCount);
+								}
 
-					if (countPage > 1) {
-						layoutPaginationTop.IsVisible = true;
-						layoutPaginationBottom.IsVisible = true;
+								if (countPage > 1) {
+									layoutPaginationTop.IsVisible = true;
+									layoutPaginationBottom.IsVisible = true;
 
-						paginationTop.CurrentPage = currentPage;
-						paginationTop.CountPage = countPage;
-						paginationTop.Show();
+									paginationTop.CurrentPage = currentPage;
+									paginationTop.CountPage = countPage;
+									paginationTop.Show();
 
-						paginationBottom.CurrentPage = currentPage;
-						paginationBottom.CountPage = countPage;
-						paginationBottom.Show();
-					} else {
-						layoutPaginationTop.IsVisible = false;
-						layoutPaginationBottom.IsVisible = false;
-					}
-					indicator.IsVisible = false;
-					errorView.IsVisible = false;
-					listView.IsVisible = true;
-					listView.ItemsSource = entityList;
-				});
+									paginationBottom.CurrentPage = currentPage;
+									paginationBottom.CountPage = countPage;
+									paginationBottom.Show();
+								} else {
+									layoutPaginationTop.IsVisible = false;
+									layoutPaginationBottom.IsVisible = false;
+								}
+								indicator.IsVisible = false;
+								errorView.IsVisible = false;
+								listView.IsVisible = true;
+								listView.ItemsSource = entityList;
+							});
+						});
+					},
+					(request, model) => { },
+					LoadData.CancellationToken
+				);
 			});
 		}
 
 		async void OnClickAllRecords(EventArgs e, object sender)
 		{
 			if (btnRecord.Text == MessageApl.BtnAllRecord) {
-				btnRecord.Text = MessageApl.BtnPageRecord;
 				if (!await DisplayAlert("Всего записей: " + countRecords + ". Хотите отобразить их все?", "", "OK", "Отмена")) return;
+				btnRecord.Text = MessageApl.BtnPageRecord;
 				Show(true);
 			} else {
 				currentPage = 1;

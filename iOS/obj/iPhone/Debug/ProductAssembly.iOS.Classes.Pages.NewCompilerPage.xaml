@@ -22,7 +22,7 @@
 	<ContentView x:Name="contentView" ControlTemplate="{StaticResource MainTemplate}">
 		<StackLayout x:Name="layoutMain" >
 			<StackLayout Orientation="Horizontal" Padding="8,20,8,0">
-				<Label x:Name="lblTitle" Text="Новый комплектовщик" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" />
+				<Label x:Name="lblTitle" Text="Новый сборщик" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" />
 			</StackLayout>
 
 			<Control:ErrorWebView x:Name="errorView" VerticalOptions="CenterAndExpand" IsVisible="false" />
@@ -32,7 +32,7 @@
 				<Label  Text="Данная страница информационная." TextColor="{StaticResource appRed}" />
 				<Label  Text="Поля ниже не активны для ввода данных!"  TextColor="{StaticResource appRed}" />
 				<Label  Text="Для безопасности данных пароль"  TextColor="{StaticResource appRed}" />
-				<Label  Text="не будет храниться в открытом виде"   TextColor="{StaticResource appRed}" />
+				<Label  Text="не будет храниться в открытом виде."   TextColor="{StaticResource appRed}" />
 			</StackLayout>
 			
 			<StackLayout WidthRequest="350" HorizontalOptions="Center">

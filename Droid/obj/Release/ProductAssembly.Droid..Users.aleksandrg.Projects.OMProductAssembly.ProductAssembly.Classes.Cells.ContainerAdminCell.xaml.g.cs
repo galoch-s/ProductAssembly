@@ -15,12 +15,12 @@ namespace ProductAssembly {
     public partial class ContainerAdminCell : global::XLabs.Forms.Controls.FastGridCell {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
-        private global::Xamarin.Forms.Button btn;
+        private global::ProductAssembly.WrappedButton btn;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(ContainerAdminCell));
-            btn = global::Xamarin.Forms.NameScopeExtensions.FindByName <global::Xamarin.Forms.Button>(this, "btn");
+            btn = global::Xamarin.Forms.NameScopeExtensions.FindByName <global::ProductAssembly.WrappedButton>(this, "btn");
         }
     }
 }

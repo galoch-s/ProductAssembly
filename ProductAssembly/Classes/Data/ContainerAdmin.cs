@@ -6,6 +6,7 @@ using SQLite;
 using System.Linq;
 using SQLiteNetExtensions.Attributes;
 using SQLiteNetExtensions.Extensions;
+using System.Linq.Expressions;
 
 namespace ProductAssembly
 {
@@ -34,6 +35,13 @@ namespace ProductAssembly
 		public string ContainerType { get; set; }
 
 
+		[OneToMany(CascadeOperations = CascadeOperation.All)]
+		[JsonProperty("activeOptions")]
+		public List<ActiveOption> ActiveOptions { get; set; }
+
+		[OneToMany(CascadeOperations = CascadeOperation.All)]
+		[JsonProperty("manufacturerOrdersGroupAdminsCompiledInReport")]
+		public List<ContainerAdminCompiledInReport> ContainerAdminCompiledInReportList { get; set; }
 
 
 
@@ -45,6 +53,9 @@ namespace ProductAssembly
 		[JsonProperty("manufacturerOrdersGroupAdminCompiledInReport")]
 		public int AssignComplate { get; set; }
 
+		public bool IsCompilerComplite { get; set; }
+
+
 		//[JsonProperty("manufacturerOrdersGroupCompiledInReport")]
 		//public CompiledInReport Compiled { get; set; }
 
@@ -55,11 +66,6 @@ namespace ProductAssembly
   //      "manufacturerOrdersGroupCompiledInReport": null,
   //      "manufacturerOrdersGroupAssignedInReport": 2,
   //      "manufacturerOrdersGroupAdminCompiledInReport": "1"
-
-
-
-
-
 
 
 
@@ -81,12 +87,14 @@ namespace ProductAssembly
 			}
 		}
 
-		public static async Task<bool> IsLoadCompileItemsAsync(int reportID)
+		public static async Task<bool> IsLoadCompileItemsAsync(int reportID, int typeContainer)
 		{
 			using (await SqlConnect._lock.LockAsync()) {
 				if (Constants.IsWriteConsoleDB)
 					Console.WriteLine("ContainerAdmin.IsLoadCompileItemsAsync");
 				List<ContainerAdmin> containerList = await SqlConnect.connectionAsync.GetAllWithChildrenAsync<ContainerAdmin>(g => g.ContainerType == CaseContainerType.Open && g.ReportId == reportID);
+				if (typeContainer != 0)
+					containerList = containerList.FindAll(g => g.ActiveOptions.Any(k => k.OptionId == typeContainer));
 				bool isFlag = containerList.Count > 0 && containerList.All(g => g.ProductInOrdersList.Count > 0);
 				return isFlag;
 			}
@@ -114,6 +122,36 @@ namespace ProductAssembly
 				containerList = containerList.FindAll(g => g.ProductInOrdersList.Count == 0);
 				return containerList.SingleOrDefault();
 			}
+		}
+
+		public static void SetCompilerComplite(List<ContainerAdmin> containerList)
+		{
+			foreach (ContainerAdmin container in containerList) {
+				if (container.ContainerAdminCompiledInReportList.Any(g => g.AdminId == User.Singleton.AdminId)) {
+					container.IsCompilerComplite = true;
+				}
+			}
+		}
+
+		public static ContainerAdmin GetContainerList(int reportID, int typeContainer, Expression<Func<ContainerAdmin, object>> orderBy = null)
+		{
+			lock (SqlConnect.locker) {
+				if (Constants.IsWriteConsoleDB)
+					Console.WriteLine("GetContainerList.GetNotLoadAndOpen");
+
+				List<ContainerAdmin> containerList = SqlConnect.connection.GetAllWithChildren(g => g.ReportId == reportID, orderBy);
+				containerList = containerList.FindAll(g => g.ActiveOptions.Any(t => t.OptionId == typeContainer));
+				return containerList.SingleOrDefault();
+			}
+		}
+
+		public static async Task<List<ContainerAdmin>> GetContainerListAsync(int reportID, int typeContainer, Expression<Func<ContainerAdmin, object>> orderBy = null)
+		{
+			if (Constants.IsWriteConsoleDB)
+				Console.WriteLine("GetContainerListAsync.GetNotLoadAndOpen");
+
+			List<ContainerAdmin> containerList = await SqlConnect.connectionAsync.GetAllWithChildrenAsync(g => g.ReportId == reportID, orderBy);
+			return containerList.FindAll(g => g.ActiveOptions.Any(t => t.OptionId == typeContainer));
 		}
 	}
 

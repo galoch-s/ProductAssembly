@@ -148,7 +148,8 @@ namespace ProductAssembly
 			lblProgress.IsVisible = false;
 
 			Task.Run(async () => {
-				bool isLoad = await ContainerAdmin.IsLoadCompileItemsAsync(App.CurrentReportId);
+				bool isLoad = await ContainerAdmin.IsLoadCompileItemsAsync(App.CurrentReportId, User.Singleton.TypeContainer);
+
 				//if (isLoad) {
 				//	containerAdminList = await DataBaseUtils<ContainerAdmin>.GetAllWithChildrenAsync(g => g.ReportId == App.CurrentReportId, g => g.ManufacturerName);
 				//	Device.BeginInvokeOnMainThread(() => {
@@ -158,16 +159,28 @@ namespace ProductAssembly
 				//	});
 				//} else {
 				Device.BeginInvokeOnMainThread(() => {
-					lblProgress.Text = "Обработка пожалуйста ждите...";
+					lblProgress.Text = "Обработка, пожалуйста ждите...";
 					lblProgress.IsVisible = true;
 					searchBar.IsEnabled = false;
 					DependencyService.Get<IPowerManager>().SetWakeLockDevice(true);
 				});
 				LoadData.CancellationToken = new CancellationTokenSource();
-				loadData.LoadContainer(App.CurrentReportId, isLoad,
+				loadData.LoadContainer(App.CurrentReportId, User.Singleton.TypeContainer, isLoad,
 				   (obj, compile) => {
 					   Task.Run(async () => {
-						   containerAdminList = await DataBaseUtils<ContainerAdmin>.GetAllWithChildrenAsync(g => g.ReportId == App.CurrentReportId, g => g.ManufacturerName);
+					   //containerAdminList = await DataBaseUtils<ContainerAdmin>.GetAllWithChildrenAsync(g => g.ReportId == App.CurrentReportId, g => g.ManufacturerName);
+						if (User.Singleton != null && User.Singleton.RolesList != null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.Admin))
+							containerAdminList = await ContainerAdmin.GetContainerListAsync(App.CurrentReportId, User.Singleton.TypeContainer, g => g.ManufacturerName);					   		
+						else
+							containerAdminList = await DataBaseUtils<ContainerAdmin>.GetAllAsync(g => g.ReportId == App.CurrentReportId, g => g.ManufacturerName);
+
+						/*
+							if (User.Singleton != null && User.Singleton.RolesList == null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.Admin))
+						   		containerAdminList = await DataBaseUtils<ContainerAdmin>.GetAllAsync(g => g.ReportId == App.CurrentReportId, g => g.ManufacturerName);
+							else
+								//containerAdminList = await DataBaseUtils<ContainerAdmin>.GetAllWithChildrenAsync(g => g.ReportId == App.CurrentReportId, g => g.ManufacturerName);
+								containerAdminList = await ContainerAdmin.GetContainerListAsync(App.CurrentReportId, User.Singleton.TypeContainer, g => g.ManufacturerName);
+						*/
 						   Device.BeginInvokeOnMainThread(() => {
 							   ContainerGridView.IsVisible = true;
 							   ContainerGridView.ItemsSource = containerAdminList;
@@ -267,6 +280,7 @@ namespace ProductAssembly
 		void ReturnVersion(List<VersionApi> entityList, BaseModel baseModel)
 		{
 			if (entityList == null || entityList.Count == 0) return;
+			App.VersionApi = entityList[0].Version;
 			Device.BeginInvokeOnMainThread(() =>
 			{
 				lblVersion.Text = "app version = " + App.Version + " // api version " + entityList[0].Version;

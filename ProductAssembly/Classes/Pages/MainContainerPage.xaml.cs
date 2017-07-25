@@ -13,7 +13,7 @@ namespace ProductAssembly
 	{
 		event EventHandler EventLogin;
 		LoadData loadData;
-		bool isInitilize = true;
+		bool isInitilize = false;
 		bool isLoadProduct;
 
 		public MainContainerPage(EventHandler eventLogin)
@@ -40,7 +40,7 @@ namespace ProductAssembly
 
 			LoadData.CancellationToken.Cancel();
 			layoutProgress.IsVisible = true;
-			lblProgress.Text = "Обработка пожалуйста ждите...";
+			lblProgress.Text = "Обработка, пожалуйста ждите...";
 			lblProgress.IsVisible = true;
 			//gridView.IsVisible = false;
 			headerView.IsVisible = false;
@@ -51,12 +51,12 @@ namespace ProductAssembly
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
-			if (isInitilize) {
-				isInitilize = false;
+			if (!isInitilize) {
+				isInitilize = true;
 			} else {
 				indicatorGrid.IsVisible = true;
 				//layoutProgress.IsVisible = true;
-				//lblProgress.Text = "Обработка пожалуйста ждите...";
+				//lblProgress.Text = "Обработка, пожалуйста ждите...";
 				//lblProgress.IsVisible = true;
 				gridView.IsVisible = false;
 				//headerView.IsVisible = false;
@@ -70,12 +70,13 @@ namespace ProductAssembly
 			Task.Run(() => {
 				//await Task.Delay(100);
 				LoadData.CancellationToken.Cancel();
+				LoadData.CancellationToken = new CancellationTokenSource();
 				loadData.LoadReportManufacturer((objReport, compiler) => {
 					List<int> reportIdNoLoadList = ReportAdmin.GetNoLoadItems(User.Singleton.ManufacturerID);
 					if (reportIdNoLoadList.Count == 0) {
 						if (!isLoadProduct) {
 							Device.BeginInvokeOnMainThread(() => {
-								lblProgress.Text = "Обработка пожалуйста ждите...";
+								lblProgress.Text = "Обработка, пожалуйста ждите...";
 								DependencyService.Get<IPowerManager>().SetWakeLockDevice(true);
 							});
 							RequestProduct();
@@ -95,7 +96,7 @@ namespace ProductAssembly
 						  (obj, compile) => {
 							  if (!isLoadProduct) {
 								  Device.BeginInvokeOnMainThread(() => {
-									  lblProgress.Text = "Обработка пожалуйста ждите...";
+									  lblProgress.Text = "Обработка, пожалуйста ждите...";
 									  DependencyService.Get<IPowerManager>().SetWakeLockDevice(true);
 								  });
 								  RequestProduct();
@@ -158,7 +159,7 @@ namespace ProductAssembly
 				//	});
 				//} else {
 				//Device.BeginInvokeOnMainThread(() => {
-				//	lblProgress.Text = "Обработка пожалуйста ждите...";
+				//	lblProgress.Text = "Обработка, пожалуйста ждите...";
 				//	lblProgress.IsVisible = true;
 				//});
 				LoadData.CancellationToken = new CancellationTokenSource();
@@ -172,8 +173,9 @@ namespace ProductAssembly
 						   });
 						   await Task.Delay(100);
 						   Device.BeginInvokeOnMainThread(() => {
+							   if (User.Singleton == null) return;
+
 							   gridView.ItemsSource = ReportAdmin.GetOpenReport(User.Singleton.ManufacturerID);
-							lblCountMinutes.Text = User.Singleton.CountMunutesProduct.ToString();
 						   });
 					   });
 				   },
@@ -224,6 +226,7 @@ namespace ProductAssembly
 		void ReturnVersion(List<VersionApi> entityList, BaseModel baseModel)
 		{
 			if (entityList == null || entityList.Count == 0) return;
+			App.VersionApi = entityList[0].Version;
 			Device.BeginInvokeOnMainThread(() => {
 				lblVersion.Text = "app version = " + App.Version + " // api version " + entityList[0].Version;
 			});

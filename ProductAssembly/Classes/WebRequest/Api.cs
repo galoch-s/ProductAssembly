@@ -9,11 +9,15 @@ namespace ProductAssembly
 		public static string ApiGetManufacturers = @"/api/djamshut/get-manufacturers";
 
 		///dj/api/manufacturers-in-orders-group/{0}?expand=containerType,ordersProductsCount,manufacturerOrdersGroupCompiledInReport,manufacturerOrdersGroupAssignedInReport,manufacturerOrdersGroupAdminCompiledInReport
-		public static string ApiGetContainers = @"/dj/api/manufacturers-in-orders-group/{0}?expand=containerType,manufacturerOrdersGroupAssignedInReport,manufacturerOrdersGroupAdminCompiledInReport";
+		public static string ApiGetContainers = @"/dj/api/manufacturers-in-orders-group/{0}?expand=containerType,manufacturerOrdersGroupAssignedInReport,manufacturerOrdersGroupAdminCompiledInReport,manufacturerOrdersGroupAdminsCompiledInReport,activeOptions";
+
+		public static string ApiTypeOfDisplayContainer = @"/dj/api/available-options";
+		public static string ApiSetTypeContainer = @"/dj/api/choose-option";
+		public static string ApiGetTypeContainer = @"/dj/api/ensure-option";
 
 		//public static string ApiGetOrders = @"/api/djamshut/get-orders/{0}";
 		public static string ApiGetOrders = @"/dj/api/get-orders-products/{0}";
-		public static string ApiGetOrdersForAdmin = @"/dj/api/get-orders-products/{0}/{1}";
+		public static string ApiGetOrdersForAdmin = @"/dj/api/get-orders-products/{0}/{1}"; 
 		public static string ApiGetOrderPositionForAdmin = @"/dj/api/get-orders-products/{0}";
 		public static string ApiNoMoreAndNeverWillBe = @"/dj/api/no-more-and-never-will-be/{0}";
 
@@ -45,13 +49,20 @@ namespace ProductAssembly
 		public static string ApiVersion = "/api/version";
 
 
-		public static string ApiUserContainer = @"/dj/api/users";
+		public static string ApiUserContainer = @"/dj/api/users?expand=activeOptions";
 		public static string ApiUserPassword = @"/dj/api/user/{0}";
 
-		public static string ApiCompilersList = @"dj/api/compilers";
+		public static string ApiCompilersList = @"dj/api/compilers?expand=compilerManufacturerOption";
 		public static string ApiCompilersPassword = @"dj/api/compiler/{0}/password";
 		public static string ApiCompilersGenerate = @"dj/api/compiler/generate";
 		public static string ApiCompilersConfirm = @"dj/api/compiler/confirm";
+
+
+		/// <summary>
+		/// Log
+		/// </summary>
+		public static string ApiServerLog = @"http://mobile.odezhda-master.ru";
+		public static string ApiLog = @"/api/applog";
 
 
 		/// Api login

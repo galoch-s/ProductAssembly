@@ -18119,13 +18119,13 @@ _mono_aot_file_info:
 	.align 2
 	.long unbox_trampoline_addresses
 
-	.long 495,4324,586,251,70,391195135,0,80591
-	.long 128,4,4,10,0,26,86096,5496
+	.long 495,4324,586,251,70,391195135,0,80595
+	.long 128,4,4,10,0,26,86104,5496
 	.long 4976,3544,0,4384,4912,3720,0,2640
 	.long 360,0,0,0,0,0,0,0
 	.long 0,0,0,0,0,0,0,0
 	.long 0
-	.byte 103,160,219,3,235,230,253,244,204,227,96,40,219,36,114,69
+	.byte 255,254,108,4,100,123,160,81,126,0,214,41,148,178,32,231
 	.globl _mono_aot_module_SQLiteNetExtensions_info
 	.align 2
 _mono_aot_module_SQLiteNetExtensions_info:

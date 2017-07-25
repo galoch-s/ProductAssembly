@@ -36,6 +36,9 @@ namespace ProductAssembly {
         private global::Xamarin.Forms.Button btnCompletion;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
+        private global::Xamarin.Forms.Button btnCompletionForce;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
         private global::Xamarin.Forms.ActivityIndicator indicator;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
@@ -51,6 +54,7 @@ namespace ProductAssembly {
             OrdersListView = global::Xamarin.Forms.NameScopeExtensions.FindByName <global::ProductAssembly.ExtensionListView>(this, "OrdersListView");
             layoutPagination = global::Xamarin.Forms.NameScopeExtensions.FindByName <global::Xamarin.Forms.StackLayout>(this, "layoutPagination");
             btnCompletion = global::Xamarin.Forms.NameScopeExtensions.FindByName <global::Xamarin.Forms.Button>(this, "btnCompletion");
+            btnCompletionForce = global::Xamarin.Forms.NameScopeExtensions.FindByName <global::Xamarin.Forms.Button>(this, "btnCompletionForce");
             indicator = global::Xamarin.Forms.NameScopeExtensions.FindByName <global::Xamarin.Forms.ActivityIndicator>(this, "indicator");
             errorView = global::Xamarin.Forms.NameScopeExtensions.FindByName <global::ProductAssembly.ErrorWebView>(this, "errorView");
         }

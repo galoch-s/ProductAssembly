@@ -14,7 +14,8 @@
 	<ContentView x:Name="contentView" ControlTemplate="{StaticResource MainTemplate}">
 		<StackLayout x:Name="layoutMain" >
 			<StackLayout Orientation="Horizontal" Padding="8,20,8,0">
-				<Label x:Name="lblTitle" Text="Привязка учетных записей контейнерам" VerticalOptions="Center" /><Label x:Name="lblCountItems" VerticalOptions="Center" />
+				<Label x:Name="lblTitle" Text="Привязка учетных записей контейнерам" VerticalOptions="Center" />
+				<Label x:Name="lblCountItems" VerticalOptions="Center" />
 				<Button x:Name="btnRecord" HorizontalOptions="EndAndExpand" HeightRequest="39" FontSize="15" WidthRequest="155"  
 					BackgroundColor="{StaticResource appGrayBottom}" TextColor="{StaticResource appGrayText}" Clicked="OnClickAllRecords" />
 			</StackLayout>

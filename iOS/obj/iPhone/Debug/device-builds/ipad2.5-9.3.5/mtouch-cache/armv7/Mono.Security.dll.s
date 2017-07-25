@@ -24591,13 +24591,13 @@ _mono_aot_file_info:
 	.align 2
 	.long unbox_trampoline_addresses
 
-	.long 295,2480,325,460,66,391195135,0,68106
-	.long 128,4,4,10,0,26,73024,4912
+	.long 295,2480,325,460,66,391195135,0,68110
+	.long 128,4,4,10,0,26,73032,4912
 	.long 4632,2696,0,3632,4496,3224,0,2200
 	.long 664,0,0,0,0,0,0,0
 	.long 0,0,0,0,0,0,0,0
 	.long 0
-	.byte 7,246,177,213,164,110,202,226,91,247,115,12,109,58,55,31
+	.byte 36,6,10,34,68,134,73,46,162,81,109,6,119,16,244,25
 	.globl _mono_aot_module_Mono_Security_info
 	.align 2
 _mono_aot_module_Mono_Security_info:

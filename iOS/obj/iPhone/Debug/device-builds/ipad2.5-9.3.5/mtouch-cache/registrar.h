@@ -45,6 +45,8 @@
 @class ProductAssembly_iOS_ExtensionSearchBarRenderer;
 @class Xamarin_Forms_Platform_iOS_ButtonRenderer;
 @class ProductAssembly_iOS_WrappedButtonRenderer;
+@class Xamarin_Forms_Platform_iOS_LabelRenderer;
+@class ProductAssembly_iOS_ExtensionLabelRenderer;
 @class XLabs_Forms_Controls_GridDataSource;
 @class XLabs_Forms_Controls_GridViewDelegate;
 @class XLabs_Forms_Controls_GridViewRenderer;
@@ -60,7 +62,6 @@
 @class Xamarin_Forms_Platform_iOS_EditorRenderer;
 @class Xamarin_Forms_Platform_iOS_EntryRenderer;
 @class Xamarin_Forms_Platform_iOS_FrameRenderer;
-@class Xamarin_Forms_Platform_iOS_LabelRenderer;
 @class Xamarin_Forms_Platform_iOS_HeaderWrapperView;
 @class Xamarin_Forms_Platform_iOS_FormsUITableViewController;
 @class Xamarin_Forms_Platform_iOS_ProgressBarRenderer;

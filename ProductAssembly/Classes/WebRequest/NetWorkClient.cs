@@ -36,6 +36,8 @@ namespace ProductAssembly
 					if (ActionError != null) {
 						ActionError(request, basemodel);
 					}
+					if (basemodel.StatusCode != 0)
+						Console.WriteLine("webError = " + ex.Message);
 				} catch (Exception ex) {
 					if (ActionError != null) {
 						ActionError(request, basemodel);
@@ -63,6 +65,8 @@ namespace ProductAssembly
 				if (ActionError != null) {
 					ActionError(request, basemodel);
 				}
+				if (basemodel.StatusCode != 0)
+					Console.WriteLine("webError = " + ex.Message);
 			} catch (Exception ex) {
 				if (ActionError != null) {
 					ActionError(request, basemodel);
@@ -91,9 +95,10 @@ namespace ProductAssembly
 							ActionFinished(moduls, basemodel);
 
 				} catch (WebException ex) {
-					if (ActionError != null) {
+					if (ActionError != null) 
 						ActionError(request, basemodel);
-					}
+					if (basemodel.StatusCode != 0)
+						Console.WriteLine("webError = " + ex.Message);
 				} catch (Exception ex) {
 					if (ActionError != null) {
 						ActionError(request, basemodel);
@@ -124,10 +129,12 @@ namespace ProductAssembly
 						ActionFinished(moduls, basemodel);
 
 			} catch (WebException ex) {
-				if (ActionError != null) {
+				if (ActionError != null) 
 					ActionError(request, basemodel);
-				}
+				if (basemodel.StatusCode != 0)
+					Console.WriteLine("webError = " + ex.Message);
 			} catch (Exception ex) {
+				Console.WriteLine("Error GetLoad = " + ex.Message);
 				if (ActionError != null) {
 					ActionError(request, basemodel);
 				}
@@ -147,9 +154,10 @@ namespace ProductAssembly
 			}
 		}
 
-		public void GetAllAsync(MyRequest request)
+		public void GetAllAsync(MyRequest request, CancellationTokenSource token = null, Dictionary<string, object> paramerters = null)
 		{
 			BaseModel basemodel = new ObjectRequest<T>();
+			basemodel.Parameters = paramerters;
 			moduls = new List<T>();
 			Task.Run(() => {
 				try {
@@ -178,6 +186,8 @@ namespace ProductAssembly
 					if (ActionError != null) {
 						ActionError(request, basemodel);
 					}
+					if (basemodel.StatusCode != 0)
+						Console.WriteLine("webError = " + ex.Message);
 				} catch (Exception ex) {
 					Console.WriteLine(ex);
 					if (ActionError != null) {
@@ -251,6 +261,8 @@ namespace ProductAssembly
 				if (ActionError != null) {
 					ActionError(request, basemodel);
 				}
+				if (basemodel.StatusCode != 0)
+					Console.WriteLine("webError = " + ex.Message);
 			} catch (Exception ex) {
 				Console.WriteLine(ex);
 				if (ActionError != null) {
@@ -277,6 +289,8 @@ namespace ProductAssembly
 				if (ActionError != null) {
 					ActionError(request, basemodel);
 				}
+				if (basemodel.StatusCode != 0)
+					Console.WriteLine("webError = " + ex.Message);
 			} catch (Exception ex) {
 				if (ActionError != null) {
 					ActionError(request, basemodel);
@@ -302,6 +316,8 @@ namespace ProductAssembly
 					if (ActionError != null) {
 						ActionError(request, basemodel);
 					}
+					if (basemodel.StatusCode != 0)
+						Console.WriteLine("webError = " + ex.Message);
 				} catch (Exception ex) {
 					if (ActionError != null) {
 						ActionError(request, basemodel);

@@ -1,77 +1,99 @@
 ﻿<Properties StartupConfiguration="{8D1B2C49-4698-4445-9A45-03A50391AA02}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="ProductAssembly/Classes/Printing.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ProductAssembly/Classes/WebRequest/NetWorkClient.cs">
     <Files>
-      <File FileName="ProductAssembly/Classes/DataBase/LoadData.cs" Line="421" Column="35" />
-      <File FileName="ProductAssembly/App.xaml.cs" Line="40" Column="67" />
-      <File FileName="ProductAssembly/Classes/Pages/LoginPage.xaml.cs" Line="108" Column="15" />
-      <File FileName="ProductAssembly/Classes/Pages/MainCompeterPage.xaml.cs" Line="86" Column="21" />
-      <File FileName="ProductAssembly/Classes/Pages/ContainerPage.xaml.cs" Line="164" Column="6" />
-      <File FileName="ProductAssembly/Classes/Pages/ContainerPage.xaml" Line="59" Column="32" />
-      <File FileName="ProductAssembly/Classes/Pages/MainContainerPage.xaml.cs" Line="108" Column="32" />
-      <File FileName="ProductAssembly/Classes/Printing.cs" Line="1" Column="1" />
+      <File FileName="ProductAssembly/Classes/DataBase/LoadData.cs" Line="375" Column="26" />
+      <File FileName="ProductAssembly/Classes/Pages/LoginPage.xaml.cs" Line="149" Column="4" />
+      <File FileName="ProductAssembly/Classes/Pages/MainAdminPage.xaml.cs" Line="140" Column="4" />
+      <File FileName="ProductAssembly/Classes/Pages/ContainerPage.xaml.cs" Line="173" Column="148" />
+      <File FileName="ProductAssembly/Classes/Pages/CompilerPage.xaml.cs" Line="117" Column="47" />
+      <File FileName="ProductAssembly/Classes/Pages/MainCompeterPage.xaml.cs" Line="69" Column="66" />
+      <File FileName="ProductAssembly/Classes/Data/ReportAdmin.cs" Line="45" Column="4" />
+      <File FileName="ProductAssembly/Classes/Data/ContainerAdmin.cs" Line="149" Column="1" />
+      <File FileName="ProductAssembly/Classes/Pages/ContainerContentPage.xaml.cs" Line="81" Column="1" />
+      <File FileName="ProductAssembly/Classes/WebRequest/NetWorkClient.cs" Line="267" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Cells/OrderSizeCell.xaml.cs" relfile="ProductAssembly/Classes/Cells/OrderSizeCell.xaml.cs" line="24" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="518" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="520" column="35" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="185" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="187" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="344" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="346" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="361" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="406" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="408" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="389" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="391" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="359" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="642" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/WebRequest/NetWorkClient.cs" relfile="ProductAssembly/Classes/WebRequest/NetWorkClient.cs" line="277" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/WebRequest/NetWorkClient.cs" relfile="ProductAssembly/Classes/WebRequest/NetWorkClient.cs" line="281" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="307" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="309" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="51" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="53" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="478" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="480" column="35" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="462" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="464" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="447" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="449" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="38" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="40" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/WebRequest/NetWorkClient.cs" relfile="ProductAssembly/Classes/WebRequest/NetWorkClient.cs" line="127" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/WebRequest/NetWorkClient.cs" relfile="ProductAssembly/Classes/WebRequest/NetWorkClient.cs" line="131" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Data/User.cs" relfile="ProductAssembly/Classes/Data/User.cs" line="156" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="82" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="84" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="277" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="279" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Pages/MainAdminPage.xaml.cs" relfile="ProductAssembly/Classes/Pages/MainAdminPage.xaml.cs" line="74" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="261" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="263" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Pages/Products.xaml.cs" relfile="ProductAssembly/Classes/Pages/Products.xaml.cs" line="302" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Data/SendMessageToServer.cs" relfile="ProductAssembly/Classes/Data/SendMessageToServer.cs" line="83" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Data/SendMessageToServer.cs" relfile="ProductAssembly/Classes/Data/SendMessageToServer.cs" line="87" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="532" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="534" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Pages/Orders.xaml.cs" relfile="ProductAssembly/Classes/Pages/Orders.xaml.cs" line="287" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="606" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="608" column="35" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="194" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="196" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="397" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="399" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="414" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="473" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="475" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="442" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="444" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="412" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="730" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/WebRequest/NetWorkClient.cs" relfile="ProductAssembly/Classes/WebRequest/NetWorkClient.cs" line="295" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="316" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="318" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="58" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="60" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="560" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="562" column="35" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="544" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="546" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="529" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="531" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="45" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="47" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Data/User.cs" relfile="ProductAssembly/Classes/Data/User.cs" line="161" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="89" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="91" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="286" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="288" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="270" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="272" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Data/SendMessageToServer.cs" relfile="ProductAssembly/Classes/Data/SendMessageToServer.cs" line="91" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Data/SendMessageToServer.cs" relfile="ProductAssembly/Classes/Data/SendMessageToServer.cs" line="95" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="620" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="622" column="1" />
       <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Views/OrderPositionView.xaml.cs" relfile="ProductAssembly/Classes/Views/OrderPositionView.xaml.cs" line="269" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="228" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="230" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Pages/Orders.xaml.cs" relfile="ProductAssembly/Classes/Pages/Orders.xaml.cs" line="277" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Pages/Orders.xaml.cs" relfile="ProductAssembly/Classes/Pages/Orders.xaml.cs" line="282" column="35" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="241" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="243" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Pages/Orders.xaml.cs" relfile="ProductAssembly/Classes/Pages/Orders.xaml.cs" line="112" column="33" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Pages/ContainerPage.xaml.cs" relfile="ProductAssembly/Classes/Pages/ContainerPage.xaml.cs" line="143" column="1" />
-      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/LoadData.cs" relfile="ProductAssembly/Classes/DataBase/LoadData.cs" line="443" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="237" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="239" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Pages/Orders.xaml.cs" relfile="ProductAssembly/Classes/Pages/Orders.xaml.cs" line="331" column="35" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="250" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="252" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Pages/Orders.xaml.cs" relfile="ProductAssembly/Classes/Pages/Orders.xaml.cs" line="134" column="33" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Data/SendMessageToServer.cs" relfile="ProductAssembly/Classes/Data/SendMessageToServer.cs" line="237" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/iOS/Main.cs" relfile="iOS/Main.cs" line="39" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="378" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="380" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/WebRequest/NetWorkClient.cs" relfile="ProductAssembly/Classes/WebRequest/NetWorkClient.cs" line="137" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/iOS/Extensions/ExtensionNavigationPageRenderer.cs" relfile="iOS/Extensions/ExtensionNavigationPageRenderer.cs" line="17" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/WebRequest/NetWorkClient.cs" relfile="ProductAssembly/Classes/WebRequest/NetWorkClient.cs" line="135" column="50" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/WebRequest/NetWorkClient.cs" relfile="ProductAssembly/Classes/WebRequest/NetWorkClient.cs" line="265" column="52" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/WebRequest/NetWorkClient.cs" relfile="ProductAssembly/Classes/WebRequest/NetWorkClient.cs" line="69" column="6" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/WebRequest/NetWorkClient.cs" relfile="ProductAssembly/Classes/WebRequest/NetWorkClient.cs" line="71" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/WebRequest/NetWorkClient.cs" relfile="ProductAssembly/Classes/WebRequest/NetWorkClient.cs" line="267" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/WebRequest/NetWorkClient.cs" relfile="ProductAssembly/Classes/WebRequest/NetWorkClient.cs" line="293" column="52" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="71" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="73" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="358" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="360" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="573" column="35" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="575" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="178" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="180" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Data/SendMessageToServer.cs" relfile="ProductAssembly/Classes/Data/SendMessageToServer.cs" line="203" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/WebRequest/WebRequestUtils.cs" relfile="ProductAssembly/Classes/WebRequest/WebRequestUtils.cs" line="75" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/Data/UserContainer.cs" relfile="ProductAssembly/Classes/Data/UserContainer.cs" line="70" column="33" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="149" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="151" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="162" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="164" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="24" column="1" />
+      <Breakpoint file="/Users/aleksandrg/Projects/OMProductAssembly/ProductAssembly/Classes/DataBase/DataBaseUtils.cs" relfile="ProductAssembly/Classes/DataBase/DataBaseUtils.cs" line="26" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.ProductAssembly.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.998539e00184500c696a5c022a03befe000f7d78" />
+  <MonoDevelop.Ide.ItemProperties.ProductAssembly.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.994F6DC6-95D1-485D-86DE-084DB2D1CE64" />
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.ProductAssembly.Droid PreferredExecutionTarget="Android.Android_Accelerated_x86" />
 </Properties>

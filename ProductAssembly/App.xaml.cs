@@ -13,6 +13,7 @@ namespace ProductAssembly
 		public static int CurrentActionStatus;
 		public static float Density;
 		public static string Version;
+		public static string VersionApi;
 
 		public static int CurrentReportId = -1;
 		public static ContainerAdmin CurrentManufactures = null;
@@ -38,7 +39,6 @@ namespace ProductAssembly
 
 			// TODO Автоблокировка экрана true - экран не гаснет, false - экран гаснет
 			DependencyService.Get<IPowerManager>().SetWakeLockDevice(true);
-
 
 			Initialization();
 		}
@@ -90,6 +90,7 @@ namespace ProductAssembly
 			foreach (UserRole userRole in User.Singleton.RolesList) {
 				switch (userRole.Id) {
 					case (int)UnumRoleID.ContainerManager:
+					case (int)UnumRoleID.Admin:
 						MainNavigation = new NavigationPage(new MainAdminPage(ExitUser));
 						isAccess = true;
 						break;

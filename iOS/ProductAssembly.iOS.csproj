@@ -211,6 +211,7 @@
     <Compile Include="ClassToCrossPlatform\Picture.cs" />
     <Compile Include="ClassToCrossPlatform\PowerManager.cs" />
     <Compile Include="Extensions\WrappedButtonRenderer.cs" />
+    <Compile Include="Extensions\ExtensionLabelRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\Roboto-Black.ttf" />

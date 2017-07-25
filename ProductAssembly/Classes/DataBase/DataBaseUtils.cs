@@ -18,7 +18,14 @@ namespace ProductAssembly
 		{
 			if (Constants.IsWriteConsoleDB)
 				Console.WriteLine("InsertOrReplaceAsync");
-			return await SqlConnect.connectionAsync.InsertOrReplaceAsync(entity);
+			try {
+				return await SqlConnect.connectionAsync.InsertOrReplaceAsync(entity);
+			} catch (SQLite.SQLiteException ex) {
+				Console.WriteLine(ex.Message);
+			} catch (Exception ex) {
+				Console.WriteLine(ex.Message);
+			}
+			return 0;
 		}
 
 		public static int InsertOrReplace(T entity)
@@ -41,12 +48,12 @@ namespace ProductAssembly
 			}
 		}
 
-		public static async Task InsertOrReplaceWithChildrenAsync(T entity)
+		public static async Task InsertOrReplaceWithChildrenAsync(T entity, bool recursive = false)
 		{
 			if (Constants.IsWriteConsoleDB)
 				Console.WriteLine("InsertOrReplaceWithChildrenAsync");
 			try {
-				await SqlConnect.connectionAsync.InsertOrReplaceWithChildrenAsync(entity);
+				await SqlConnect.connectionAsync.InsertOrReplaceWithChildrenAsync(entity, recursive);
 			} catch (SQLite.SQLiteException ex) {
 				Console.WriteLine(ex.Message);
 			} catch (Exception ex) {
@@ -90,16 +97,6 @@ namespace ProductAssembly
 
 		#region ******  Insert  ******
 
-		public static int InsetAll(List<T> entity)
-		{
-			lock (SqlConnect.locker) {
-				if (Constants.IsWriteConsoleDB)
-					Console.WriteLine("InsetAll");
-				SqlConnect.connection.DeleteAll<T>();
-				return SqlConnect.connection.InsertAll(entity, true);
-			}
-		}
-
 		public static async Task<int> InsertAsync(T entity)
 		{
 			if (Constants.IsWriteConsoleDB)
@@ -142,6 +139,19 @@ namespace ProductAssembly
 			return 1;
 		}
 
+		public static void InsertAllWithChildren(IEnumerable<T> entity)
+		{
+			if (Constants.IsWriteConsoleDB)
+				Console.WriteLine("InsertAllWithChildren");
+			try {
+				SqlConnect.connection.InsertAllWithChildren(entity);
+			} catch (SQLite.SQLiteException ex) {
+				Console.WriteLine(ex.Message);
+			} catch (Exception ex) {
+				Console.WriteLine(ex.Message);
+			}
+		}
+
 		public static async Task InsertAllWithChildrenAsync(IEnumerable<T> entity)
 		{
 			if (Constants.IsWriteConsoleDB)
@@ -155,7 +165,6 @@ namespace ProductAssembly
 			}
 		}
 		#endregion
-
 
 		#region ******  Update  ******
 
@@ -325,10 +334,54 @@ namespace ProductAssembly
 			}
 			return default(T);
 		}
-	
 
 		#endregion
 
+
+		#region ******  GetItems  ******
+		public static List<T> GetAll(Expression<Func<T, bool>> where = null, Expression<Func<T, object>> orderBy = null)
+		{
+			try {
+				lock (SqlConnect.locker) {
+					if (Constants.IsWriteConsoleDB)
+						Console.WriteLine("GetAll");
+
+					var query = SqlConnect.connection.Table<T>();
+					if (where != null)
+						query = query.Where(where);
+					if (orderBy != null)
+						query = query.OrderBy(orderBy);
+
+					return query.ToList();
+				}
+			} catch (SQLite.SQLiteException ex) {
+				Console.WriteLine(ex.Message);
+			} catch (Exception ex) {
+				Console.WriteLine(ex.Message);
+			}
+			return null;
+		}
+
+		public static async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> where = null, Expression<Func<T, object>> orderBy = null)
+		{
+			try {
+				if (Constants.IsWriteConsoleDB)
+					Console.WriteLine("GetAllAsync");
+				var query = SqlConnect.connectionAsync.Table<T>();
+				if (where != null)
+					query = query.Where(where);
+				if (orderBy != null)
+					query = query.OrderBy(orderBy);
+
+				return await query.ToListAsync();
+			} catch (SQLite.SQLiteException ex) {
+				Console.WriteLine(ex.Message);
+			} catch (Exception ex) {
+				Console.WriteLine(ex.Message);
+			}
+			return null;
+		}
+		#endregion
 
 		#region ******  GetAllWithChildren  ******
 
@@ -378,13 +431,13 @@ namespace ProductAssembly
 			return null;
 		}
 
-		public static async Task<List<T>> GetAllWithChildrenAsync(Expression<Func<T, bool>> where, int? limit = null, int? offset = null)
+		public static async Task<List<T>> GetAllWithChildrenAsync(Expression<Func<T, bool>> where, int? limit = null, int? offset = null, bool recursive = false)
 		{
 			using (await SqlConnect._lock.LockAsync()) {
 				try {
 					if (Constants.IsWriteConsoleDB)
 						Console.WriteLine("GetAllWithChildrenAsync");
-					return await SqlConnect.connectionAsync.GetAllWithChildrenAsync<T>(where, null, false, limit, offset);
+					return await SqlConnect.connectionAsync.GetAllWithChildrenAsync<T>(where, null, false, limit, offset, recursive);
 				} catch (SQLite.SQLiteException ex) {
 					Console.WriteLine(ex.Message);
 				} catch (Exception ex) {
@@ -392,6 +445,20 @@ namespace ProductAssembly
 				}
 				return null;
 			}
+		}
+
+		public static List<T> GetAllWithChildren(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderBy, bool isDesc = false, int? limit = null, int? offset = null)
+		{
+			try {
+				if (Constants.IsWriteConsoleDB)
+					Console.WriteLine("GetAllWithChildren");
+				return SqlConnect.connection.GetAllWithChildren<T>(where, orderBy, isDesc, limit, offset);
+			} catch (SQLite.SQLiteException ex) {
+				Console.WriteLine(ex.Message);
+			} catch (Exception ex) {
+				Console.WriteLine(ex.Message);
+			}
+			return null;
 		}
 
 		public static async Task<List<T>> GetAllWithChildrenAsync(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderBy, bool isDesc = false, int? limit = null, int? offset = null)
@@ -414,6 +481,21 @@ namespace ProductAssembly
 
 
 		#region ******  GetCount  ******
+
+		public static int GetCount(Expression<Func<T, bool>> where = null, int skip = 0, int take = 0)
+		{
+			if (Constants.IsWriteConsoleDB)
+				Console.WriteLine("GetCountAsync");
+			var query = SqlConnect.connection.Table<T>();
+			if (where != null)
+				query = query.Where(where);
+			if (skip != 0)
+				query = query.Skip(skip);
+			if (take != 0)
+				query = query.Take(take);
+
+			return query.Count();
+		}
 
 		public static async Task<int> GetCountAsync(Expression<Func<T, bool>> where = null, int skip = 0, int take = 0)
 		{
@@ -483,9 +565,15 @@ namespace ProductAssembly
 
 		public static async Task DeleteItemAsync(T item)
 		{
-			if (Constants.IsWriteConsoleDB)
-				Console.WriteLine("DeleteItemAsync");
-			await SqlConnect.connectionAsync.DeleteAsync(item, true);
+			try {
+				if (Constants.IsWriteConsoleDB)
+					Console.WriteLine("DeleteItemAsync");
+				await SqlConnect.connectionAsync.DeleteAsync(item, true);
+			} catch (SQLite.SQLiteException ex) {
+				Console.WriteLine(ex.Message);
+			} catch (Exception ex) {
+				Console.WriteLine(ex.Message);
+			}
 		}
 
 		public static async Task DeleteItemAsync(KeyValuePair<string, int> parameter)

@@ -17,12 +17,21 @@
 			</StackLayout>
 			
 			<StackLayout x:Name="layoutMain" Padding="8,51,8,0" Spacing="15" VerticalOptions="FillAndExpand" >
-				<Button x:Name="btnContainer" Text="Дж-контейнеры" Clicked="OnClickContainer" Style="{StaticResource btnMainProduct}" BackgroundColor="{StaticResource appRed}"  />
+				<Button x:Name="btnContainer" Text="Контейнеры" Clicked="OnClickContainer" Style="{StaticResource btnMainProduct}" BackgroundColor="{StaticResource appRed}"  />
 				<Button x:Name="btnUser" Text="Привязка учетных записей к контейнерам" Clicked="OnClickUser" Style="{StaticResource btnMainProduct}" BackgroundColor="{StaticResource appYellow}"  />
-				<Button x:Name="btnCompiler" Text="Учётные записи комплектовщиков" Clicked="OnClickCompiler" Style="{StaticResource btnMainProduct}" BackgroundColor="{StaticResource appYellow}"  />
+				<Button x:Name="btnCompiler" Text="Учётные записи сборщиков" Clicked="OnClickCompiler" Style="{StaticResource btnMainProduct}" BackgroundColor="{StaticResource appYellow}"  />
 				<Button x:Name="btnOldAdmin" Text="Старая админка" Clicked="OnClickOldAdmin" Style="{StaticResource btnMainProduct}" BackgroundColor="{StaticResource appGreen}" />
 
-				<Label x:Name="lblVersion" VerticalOptions="EndAndExpand" HorizontalOptions="End" FontSize="12" Margin="8,0" />
+
+
+				<Control:ExtensionLabel x:Name="lblTypeContainer" IsUnderline="true" FontSize="20" Margin="0,10" HorizontalOptions="Center" TextColor="{StaticResource appBlue}" Text="Ра-поставщики"/>
+
+				<StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="End">
+					<Label x:Name="lblName" Text="Телефон колл-центра" TextColor="{StaticResource appBlue}" FontSize="15" />
+					<Label x:Name="lblPhone" Text="+7 (495) 204-15-83" TextColor="{StaticResource appBlack}" FontSize="17" />
+				</StackLayout>
+			
+				<Label x:Name="lblVersion" HorizontalOptions="End" FontSize="12"  />
 			</StackLayout>
 		</StackLayout>
 	</ContentView>

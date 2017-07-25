@@ -51,9 +51,6 @@ namespace ProductAssembly {
         private global::ProductAssembly.ProductButtonView productButtonView;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
-        private global::Xamarin.Forms.Label lblCountMinutes;
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
         private global::Xamarin.Forms.Label lblVersion;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
@@ -71,7 +68,6 @@ namespace ProductAssembly {
             indicatorGrid = global::Xamarin.Forms.NameScopeExtensions.FindByName <global::Xamarin.Forms.ActivityIndicator>(this, "indicatorGrid");
             gridView = global::Xamarin.Forms.NameScopeExtensions.FindByName <global::XLabs.Forms.Controls.GridView>(this, "gridView");
             productButtonView = global::Xamarin.Forms.NameScopeExtensions.FindByName <global::ProductAssembly.ProductButtonView>(this, "productButtonView");
-            lblCountMinutes = global::Xamarin.Forms.NameScopeExtensions.FindByName <global::Xamarin.Forms.Label>(this, "lblCountMinutes");
             lblVersion = global::Xamarin.Forms.NameScopeExtensions.FindByName <global::Xamarin.Forms.Label>(this, "lblVersion");
         }
     }

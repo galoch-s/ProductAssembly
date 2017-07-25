@@ -11,7 +11,8 @@
 		<ToolbarItem x:Name="tbarUser" Name="Выйти" Clicked="ExitUser"></ToolbarItem>
         <ToolbarItem Icon="icons/logout.png" Clicked="ExitUser"></ToolbarItem>
     </ContentPage.ToolbarItems>
-
+		
+	
 	<ContentView x:Name="contentView" ControlTemplate="{StaticResource MainTemplate}">
 		
 		<StackLayout x:Name="layoutMain" VerticalOptions="FillAndExpand" >
@@ -48,11 +49,11 @@
 				</StackLayout>
 				<BoxView></BoxView>
 				<cells:InfoProductView />
-				<Label x:Name="lblCountMinutes" HorizontalOptions="End" FontSize="12" Margin="8,0" />
 				<Label x:Name="lblVersion" HorizontalOptions="End" FontSize="12" Margin="8,0" />
           	</StackLayout>
 			
 		</StackLayout>
+	
 		
 	</ContentView>
 

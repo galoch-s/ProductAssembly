@@ -22,8 +22,8 @@ namespace ProductAssembly
 
 			//indicator = new ActivityIndicator { IsRunning = true };
 
-			HeaderView headerView = this.FindByName<HeaderView>("headerView");
-			headerView.SetIn();
+			//HeaderView headerView = this.FindByName<HeaderView>("headerView");
+			//headerView.SetIn();
 
 			Console.WriteLine(User.Singleton);
 
@@ -35,7 +35,7 @@ namespace ProductAssembly
 			layoutContent.IsVisible = false;
 			layoutProgress.IsVisible = true;
 			lblProgress.IsVisible = true;
-			lblProgress.Text = "Пожалуйста подождите идет очистка данных";
+			lblProgress.Text = "Пожалуйста подождите, идет очистка данных";
 		}
 
 		public void HideIndicator()
@@ -100,6 +100,12 @@ namespace ProductAssembly
 		{
 			//if (User.Singleton == null) {
 
+
+			/// Сборщик сгенерированный
+				//if (string.IsNullOrEmpty(entEmail.Text) && string.IsNullOrEmpty(entPassword.Text)) {
+				//	entEmail.Text = "sda2071@om.ru";
+				//	entPassword.Text = "]JpB1";
+				//}
 			/// Пароль известный на боевом
 				//if (string.IsNullOrEmpty(entEmail.Text) && string.IsNullOrEmpty(entPassword.Text)) {
 				//	entEmail.Text = "22-110@odezhda-master.ru";
@@ -139,6 +145,12 @@ namespace ProductAssembly
 				//if (string.IsNullOrEmpty(entEmail.Text) && string.IsNullOrEmpty(entPassword.Text)) {
 				//	entEmail.Text = "0458484@mail.ru";
 				//	entPassword.Text = "12345";
+				//}
+
+			/// Администратор Джамшут
+				//if (string.IsNullOrEmpty(entEmail.Text) && string.IsNullOrEmpty(entPassword.Text)) {
+				//	entEmail.Text = "galoch-s@ya.ru";
+				//	entPassword.Text = "atk+=-zT_VyBB";
 				//}
 
 

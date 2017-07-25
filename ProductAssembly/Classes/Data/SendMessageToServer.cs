@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Linq;
 using Newtonsoft.Json.Linq;
+using System.Text;
 
 namespace ProductAssembly
 {
 	public class SendMessageToServer
 	{
-		int secondSleep = 1000 * 1;
+		int secondSleep = (int)(1000 * 60 * 0.5);
 		int countAttempt = 4;
 		bool isInternet = true;
 
@@ -43,7 +44,14 @@ namespace ProductAssembly
 
 				foreach (RequestForServer data in dataList) {
 					MyRequest request = GetRequest(data);
-					request.HeaderParam = new Dictionary<HttpRequestHeader, string> { { HttpRequestHeader.Authorization, User.Singleton.HashKey } };
+
+					if (data.TypeRequest == (int)TypeDataRequest.Log) {
+						request.HeaderParam = new Dictionary<HttpRequestHeader, string> { { HttpRequestHeader.Authorization,
+							"Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes("codetekteam:Samsung86GaL")) } };
+						request.UrlServer = Api.ApiServerLog;
+					} else
+						request.HeaderParam = new Dictionary<HttpRequestHeader, string> { { HttpRequestHeader.Authorization, User.Singleton.HashKey } };
+
 					Dictionary<string, object> parameters = new Dictionary<string, object> { { "data", data } };
 					switch (data.MethodUrl) {
 						case (int)RestSharp.Method.GET:
@@ -195,6 +203,8 @@ namespace ProductAssembly
 		{
 			foreach (var item in data.DataForSqlList) {
 				await DataBaseUtils<object>.ExecuteAsync(item.TableName, item.RecordId, item.Param, item.Value);
+				if (data.TypeRequest == (int)TypeDataRequest.UserTypeContainer) 
+					User.Singleton = User.GetItem(Constants.UserID);
 			}
 		}
 
@@ -207,6 +217,7 @@ namespace ProductAssembly
 				request.PathApi = data.PathUrl;
 				Dictionary<string, string> dataList = new Dictionary<string, string>();
 				foreach (var item in data.DataForUrlRequestList) {
+					Console.WriteLine(item.Param + "=" + item.Value);
 					dataList.Add(item.Param, item.Value);
 				}
 				request.Param = dataList;

@@ -198,7 +198,7 @@ namespace ProductAssembly
 						}
 					},
 					PathUrl = string.Format(Api.ApiNoMoreAndNeverWillBe, orderPosition.Id),
-					MethodUrl = (int)RestSharp.Method.GET
+					MethodUrl = (int)RestSharp.Method.POST
 				};
 
 				if (User.Singleton != null && User.Singleton.RolesList != null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutUser)) {

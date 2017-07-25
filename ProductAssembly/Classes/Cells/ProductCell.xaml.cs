@@ -48,13 +48,11 @@ namespace ProductAssembly
 				}
 			}
 
-			Console.WriteLine("model = " + product.Model + " tableView.RowHeight = " + tableView.RowHeight);
-
 			frame.HeightRequest = heightSize * product.OptionValues.Count + 20 * 2;
 
 			double kof = App.Density == 1 ? App.Density * 1.5 : App.Density;
 
-			if (User.Singleton != null && User.Singleton.RolesList !=null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutCompleter))
+			if (User.Singleton != null && User.Singleton.RolesList !=null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutUser))
 				ImageView.Source = ImageUtils.GetImage(Constants.PrefixFolderProductContainer + User.Singleton.ManufacturerID, product.Image);
 			else
 				ImageView.Source = Constants.PathToPreviewImage + product.Image +
@@ -65,7 +63,7 @@ namespace ProductAssembly
 
 
 			if (product.CanBeRejuvenated && User.Singleton != null && User.Singleton.RolesList !=null && 
-			    User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.ContainerManager || g.Id == (int)UnumRoleID.DjamshutUser)) {
+			    User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.ContainerManager || g.Id == (int)UnumRoleID.DjamshutUser || g.Id == (int)UnumRoleID.Admin)) {
 				btnPrice.IsEnabled = true;
 				btnPrice.BackgroundColor = (Color)Application.Current.Resources["appBlue"];
 				btnPrice.TextColor = Color.White;
@@ -77,7 +75,7 @@ namespace ProductAssembly
 				btnSale.IsVisible = false;
 			}
 
-			if (User.Singleton != null && User.Singleton.RolesList !=null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.ContainerManager || g.Id == (int)UnumRoleID.DjamshutUser)) {
+			if (User.Singleton != null && User.Singleton.RolesList !=null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.ContainerManager || g.Id == (int)UnumRoleID.DjamshutUser || g.Id == (int)UnumRoleID.Admin)) {
 				layoutSizeTitle.IsVisible = false;
 
 				if (product.Status > 0 && product.Quantity > 0) {
@@ -386,9 +384,12 @@ namespace ProductAssembly
 			if (product.Quantity > 0 && product.Status > 0) {// Удалить товар
 				List<ProductOptionValue> notDeleteOptionValues = product.OptionValues.FindAll(g => g.Quantity > 0);
 				foreach (ProductOptionValue optionValue in notDeleteOptionValues) {
-					oldOptionValue.Add(optionValue.Id, optionValue.Quantity);
+					if (User.Singleton != null && User.Singleton.RolesList != null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutUser)) {
+						oldOptionValue.Add(optionValue.Id, optionValue.Quantity);
+					}
 					optionValue.Quantity = 0;
 				}
+
 				product.Quantity = 0;
 				product.Status = 0;
 
@@ -396,7 +397,9 @@ namespace ProductAssembly
 			} else { // Восстановить товар
 				List<ProductOptionValue> deleteOptionValues = product.OptionValues.FindAll(g => g.Quantity == 0);
 				foreach (ProductOptionValue optionValue in deleteOptionValues) {
-					oldOptionValue.Add(optionValue.Id, optionValue.Quantity);
+					if (User.Singleton != null && User.Singleton.RolesList != null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutUser)) {
+						oldOptionValue.Add(optionValue.Id, optionValue.Quantity);
+					}
 					optionValue.Quantity = Constants.QuantityOnSize;
 				}
 				product.Quantity = Constants.QuantityOnSize * deleteOptionValues.Count;
@@ -411,7 +414,7 @@ namespace ProductAssembly
 				MethodUrl = (int)RestSharp.Method.POST
 			};
 
-			if (User.Singleton != null && User.Singleton.RolesList != null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutCompleter)) {
+			if (User.Singleton != null && User.Singleton.RolesList != null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutUser)) {
 				dataForServer.DataForSqlList = new List<DataForSql> {
 					new DataForSql {
 						TableName = typeof(Product).Name,

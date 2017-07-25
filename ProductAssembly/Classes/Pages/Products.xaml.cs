@@ -19,7 +19,7 @@ namespace ProductAssembly
 		event EventHandler EventLogin;
 
 		SortProduct[] sortProductsList = new SortProduct[] {
-			new SortProduct { Name = "По артикулу", Param = "products_model", OrderBy = g=>g.Model, Desc=false },
+			//new SortProduct { Name = "По артикулу", Param = "products_model", OrderBy = g=>g.Model, Desc=false },
 			new SortProduct { Name = "По возрастанию", Param = "products_date_added", OrderBy = g=>g.DataAdd, Desc=false },
 			new SortProduct { Name = "По убыванию", Param = "-products_date_added", OrderBy = g=>g.DataAdd, Desc=true }
 		};
@@ -36,28 +36,29 @@ namespace ProductAssembly
 			indicator.IsVisible = true;
 			ProductListView.IsVisible = false;
 
-			if (User.Singleton != null && User.Singleton.RolesList !=null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutCompleter)) {
+			if (User.Singleton != null && User.Singleton.RolesList != null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutUser)) {
+				LoadData.CancellationToken.Cancel();
 				LoadData.CancellationToken = new CancellationTokenSource();
 				loadData.LoadNewProduct(
 					User.Singleton.ManufacturerID,
 					User.Singleton.DateLoadProduct,
-					  _status,
-					   (obj, compile) => {
-						   Task.Run(async () => {
-							   await Task.Delay(100);
-							   Device.BeginInvokeOnMainThread(() => {
-								   Show();
-							   });
-						   });
-					   },
-					   (request, model) => {
-						   Device.BeginInvokeOnMainThread(() => {
-							   errorView.IsVisible = true;
-							   errorView.TextMessage = model.ErrorMessage;
-						   });
-					   },
+					_status,
+					(obj, compile) => {
+						Task.Run(async () => {
+							await Task.Delay(100);
+							Device.BeginInvokeOnMainThread(() => {
+								Show();
+							});
+						});
+					},
+					(request, model) => {
+						Device.BeginInvokeOnMainThread(() => {
+							errorView.IsVisible = true;
+							errorView.TextMessage = model.ErrorMessage;
+						});
+					},
 					(indexElement, countElement, text) => { },
-					   LoadData.CancellationToken
+					LoadData.CancellationToken
 				);
 			} else
 				ShowAdmin();
@@ -107,7 +108,7 @@ namespace ProductAssembly
 
 			//indicator = new ActivityIndicator { IsRunning = true };
 			//Content = indicator;
-			if (User.Singleton != null && User.Singleton.RolesList !=null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutCompleter))
+			if (User.Singleton != null && User.Singleton.RolesList !=null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutUser))
 				Show();
 			else
 				ShowAdmin();
@@ -212,7 +213,7 @@ namespace ProductAssembly
 		{
 			currentPage = e.Param;
 			ProductListView.ScrollToTop();
-			if (User.Singleton != null && User.Singleton.RolesList !=null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutCompleter))
+			if (User.Singleton != null && User.Singleton.RolesList !=null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutUser))
                 Show();
 			else
 				ShowAdmin();
@@ -220,7 +221,7 @@ namespace ProductAssembly
 
 		void OnRefresh(object sender, EventArgs e)
 		{
-			if (User.Singleton != null && User.Singleton.RolesList !=null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutCompleter))
+			if (User.Singleton != null && User.Singleton.RolesList !=null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutUser))
                 Show();
 			else
 				ShowAdmin();
@@ -298,14 +299,25 @@ namespace ProductAssembly
 			});
 		}
 
-		public void TreatmentError(MyRequest request, BaseModel baseModel)
+		public void TreatmentError(MyRequest request, BaseModel model)
 		{
+			string text;
+			if (model.StatusCode == 0)
+				text = "Данный функционал доступен только при наличии интернета!";
+			else
+				text = "Произошла ошибка на сервере!";
+
 			Device.BeginInvokeOnMainThread(() => {
-				errorView.IsVisible = true;
-				errorView.TextMessage = baseModel.ErrorMessage;
-				ProductListView.IsVisible = false;
 				indicator.IsVisible = false;
+				DisplayAlert(MessageApl.TitleWarning, text, MessageApl.BtnOk);
 			});
+
+			//Device.BeginInvokeOnMainThread(() => {
+			//	errorView.IsVisible = true;
+			//	errorView.TextMessage = baseModel.ErrorMessage;
+			//	ProductListView.IsVisible = false;
+			//	indicator.IsVisible = false;
+			//});
 		}
 	}
 }

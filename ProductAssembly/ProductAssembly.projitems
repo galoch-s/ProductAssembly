@@ -53,9 +53,6 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Views\ErrorWebView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Pages\ConnectSetting.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Classes\Pages\ContainerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -187,9 +184,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Classes\Views\ErrorWebView.xaml.cs">
       <DependentUpon>ErrorWebView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Classes\Pages\ConnectSetting.xaml.cs">
-      <DependentUpon>ConnectSetting.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\VersionApi.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Classes\Pages\ContainerPage.xaml.cs">
       <DependentUpon>ContainerPage.xaml</DependentUpon>
@@ -257,6 +251,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Classes\Interface\IPowerManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\CompiledInReport.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Classes\Extensions\WrappedButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\AppsLog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\ContainerAdminCompiledInReport.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Extensions\ExtensionLabel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\TypeOfDisplayContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\Data\ActiveOption.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Classes\" />

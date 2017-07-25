@@ -11,7 +11,6 @@
 		<ToolbarItem x:Name="tbarUser" Name="Выйти" Clicked="ExitUser"></ToolbarItem>
         <ToolbarItem Icon="icons/logout.png" Clicked="ExitUser"></ToolbarItem>
     </ContentPage.ToolbarItems>
-	
 	<ContentView x:Name="contentView" ControlTemplate="{StaticResource MainTemplate}">
 		
 		<StackLayout x:Name="layoutMain" VerticalOptions="FillAndExpand" >
@@ -46,6 +45,5 @@
 
 			<Label x:Name="lblVersion" VerticalOptions="EndAndExpand" HorizontalOptions="End" FontSize="12" Margin="8,0" />
 		</StackLayout>
-		
 	</ContentView>
 </ContentPage>

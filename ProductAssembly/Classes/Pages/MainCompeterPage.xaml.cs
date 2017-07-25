@@ -14,26 +14,21 @@ namespace ProductAssembly
 		List<ReportAdmin> ReportAdminActiveList { get; set; }
 
 		LoadData loadData;
+		bool isInitilize = false;
 
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
-			LoadData.CancellationToken.Cancel();
-			layoutReport.IsVisible = false;
-			ReportGridView.IsVisible = false;
-			indicatorReport.IsVisible = true;
-			loadData.LoadReport((obj, compiler) => {
+
+			if (!isInitilize)
+				isInitilize = true;
+			else
 				ShowReport();
-			});
 		}
 
 		public MainCompeterPage(EventHandler eventLogin)
 		{
 			InitializeComponent();
-			if (User.Singleton != null && User.Singleton.RolesList !=null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutCompleter))
-				layoutReport.IsVisible = true;
-			else
-				layoutReport.IsVisible = false;
 
 			EventLogin = eventLogin;
 			NavigationPage.SetTitleIcon(this, "icons/Logo.png");
@@ -41,10 +36,9 @@ namespace ProductAssembly
 
 			errorViewReport.EventRefresh += OnRefreshReport;
 
-			loadData = new LoadData();
-			LoadData.CancellationToken = new CancellationTokenSource();
 			App.CurrentReportId = -1;
 			App.CurrentManufactures = null;
+			ShowReport();            
 
 			if (User.Singleton != null && User.Singleton.RolesList !=null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutCompleter))
 				ShowVersion();
@@ -61,19 +55,27 @@ namespace ProductAssembly
 			ShowReport();
 		}
 
-		async void ShowReport()
+		void ShowReport()
 		{
-			LoadData.ReportIdActiveList = await ReportAdmin.GetActiveItemsAsync();
-			//Task.Run(async () => { 
-			//reportAdminList = await DataBaseUtils<ReportAdmin>.GetItemsAsync();
-			reportAdminList = await DataBaseUtils<ReportAdmin>.GetAllWithChildrenAsync(null, g => g.Id, true);
-			Device.BeginInvokeOnMainThread(() => {
-				indicatorReport.IsVisible = false;
-				layoutReport.IsVisible = true;
-				ReportGridView.IsVisible = true;
-				ReportGridView.ItemsSource = reportAdminList;
+			loadData = new LoadData();
+			LoadData.CancellationToken = new CancellationTokenSource();
+			LoadData.CancellationToken.Cancel();
+			layoutReport.IsVisible = false;
+			indicatorReport.IsVisible = true;
+
+			Task.Run( () => {
+				loadData.LoadReport((obj, compiler) => {
+					Task.Run(async () => {
+						LoadData.ReportIdActiveList = await ReportAdmin.GetActiveItemsAsync(User.Singleton.TypeContainer);
+						reportAdminList = await DataBaseUtils<ReportAdmin>.GetAllWithChildrenAsync(null, g => g.Id, true);
+						Device.BeginInvokeOnMainThread(() => {
+							indicatorReport.IsVisible = false;
+							layoutReport.IsVisible = true;
+							ReportGridView.ItemsSource = reportAdminList;
+						});
+					});
+				});
 			});
-			//});
 		}
 
 		void OnItemSelected(object sender, XLabs.GridEventArgs<object> e)

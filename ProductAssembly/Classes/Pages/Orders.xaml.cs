@@ -16,6 +16,7 @@ namespace ProductAssembly
 		int currentPage = 1;
 		event EventHandler EventLogin;
 		Pagination paginationEnd;
+		Thread thead;
 
 		public Orders(EventHandler eventLogin, ContainerAdmin containerAdmin)
 		{
@@ -39,6 +40,17 @@ namespace ProductAssembly
 
 		public void Initialize(EventHandler eventLogin)
 		{
+			if (App.CurrentManufactures.ContainerType == CaseContainerType.Closed) {
+				App.CurrentActionStatus = 1;
+			} else { 
+				if (User.Singleton != null && User.Singleton.RolesList != null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutCompleter) &&
+						App.CurrentManufactures.ContainerAdminCompiledInReportList.Any(g => g.AdminId == User.Singleton.AdminId))
+					App.CurrentActionStatus = 1;
+				else
+					App.CurrentActionStatus = 0;
+			}
+				
+			
 			InitializeComponent();
 
 			EventLogin = eventLogin;
@@ -51,7 +63,7 @@ namespace ProductAssembly
 
 			ShowOrderList();
 
-			Thread thead = new Thread(RefreshOrderPosition);
+			thead = new Thread(RefreshOrderPosition);
 			thead.Start();
 		}
 
@@ -77,10 +89,14 @@ namespace ProductAssembly
 					else
 						endRecords = currentPage * ordersList.Count;
 
-					if (countPage > 1)
-						lblCountItems.Text = string.Format(" | записей {0}-{1} из {2}", beginRecords, endRecords, totalCount);
-					else
-						lblCountItems.Text = string.Format(" | записей {0}-{1}", beginRecords, totalCount);
+					if (countPage == 0) {
+						lblCountItems.Text = string.Format("| всего {0} записей", totalCount);
+					} else {
+						if (countPage > 1)
+							lblCountItems.Text = string.Format(" | записей {0}-{1} из {2}", beginRecords, endRecords, totalCount);
+						else
+							lblCountItems.Text = string.Format(" | записей {0}-{1}", beginRecords, totalCount);
+					}
 
 					OrdersListView.ItemsSource = null;
 					OrdersListView.ItemsSource = ordersList;
@@ -89,8 +105,14 @@ namespace ProductAssembly
 					errorView.IsVisible = false;
 
 					if (App.CurrentManufactures.ContainerType == CaseContainerType.Open) {
-						btnCompletion.IsVisible = true;
-						if (User.Singleton != null && User.Singleton.RolesList != null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.ContainerManager)) {
+						if (User.Singleton != null && User.Singleton.RolesList != null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutCompleter) &&
+								App.CurrentManufactures.ContainerAdminCompiledInReportList.Any(g => g.AdminId == User.Singleton.AdminId))
+							btnCompletion.IsVisible = false;
+						else
+							btnCompletion.IsVisible = true;
+						
+						if (User.Singleton != null && User.Singleton.RolesList != null && 
+						    		User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.ContainerManager || g.Id == (int)UnumRoleID.Admin)) {
 							btnCompletionForce.IsVisible = true;
 							btnCompletionForce.Text = string.Format("Принудительное завершение сборки отчёта {0}. Собрано: {1}. Назначено: {2}",
 																	App.CurrentReportId, App.CurrentManufactures.AssignComplate, App.CurrentManufactures.Assign);
@@ -120,7 +142,11 @@ namespace ProductAssembly
 
 		async void Complate(bool isForce)
 		{
-			ContainerAdmin containerAdmin = await DataBaseUtils<ContainerAdmin>.GetItemAsync(g => g.ReportId == App.CurrentReportId && g.ManufacturerID == App.CurrentManufactures.ManufacturerID);
+			//ContainerAdmin containerAdmin = await DataBaseUtils<ContainerAdmin>.GetItemAsync(g => g.ReportId == App.CurrentReportId && g.ManufacturerID == App.CurrentManufactures.ManufacturerID);
+			List<ContainerAdmin> containerAdminList = await DataBaseUtils<ContainerAdmin>
+				.GetAllWithChildrenAsync(g => g.ReportId == App.CurrentReportId && g.ManufacturerID == App.CurrentManufactures.ManufacturerID, recursive: true);
+			ContainerAdmin containerAdmin = containerAdminList[0];
+
 			string path;
 			if (User.Singleton.ManufacturerID > 0)
 				path = string.Format(Api.ApiFinishCompletion, App.CurrentManufactures.ManufacturerID);
@@ -144,12 +170,28 @@ namespace ProductAssembly
 				PathUrl = path,
 				MethodUrl = (int)RestSharp.Method.POST
 			};
-			await DataBaseUtils<RequestForServer>.InsertOrReplaceWithChildrenAsync(dataForServer);
-			containerAdmin.ContainerType = CaseContainerType.Closed;
-			await DataBaseUtils<ContainerAdmin>.InsertOrReplaceAsync(containerAdmin);
-			App.CurrentManufactures.ContainerType = CaseContainerType.Closed;
-			App.CurrentActionStatus = 1;
-			ShowOrderList();
+			try {
+				foreach (ProductInOrder productInOrder in containerAdmin.ProductInOrdersList) {
+					foreach (OrderPosition orderPosition in productInOrder.OrderPositionList) {
+						dataForServer.DataForSqlList.Add(new DataForSql {
+							TableName = typeof(OrderPosition).Name,
+							RecordId = orderPosition.Id,
+							Param = "ProductsQuantity",
+							Value = orderPosition.ProductsQuantity.ToString()
+						});
+
+						orderPosition.ProductsQuantity = orderPosition.Quantity;
+					}
+				}
+				await DataBaseUtils<RequestForServer>.InsertOrReplaceWithChildrenAsync(dataForServer);
+				containerAdmin.ContainerType = CaseContainerType.Closed;
+				await DataBaseUtils<ContainerAdmin>.InsertOrReplaceWithChildrenAsync(containerAdmin, true);
+				App.CurrentManufactures.ContainerType = CaseContainerType.Closed;
+				App.CurrentActionStatus = 1;
+				ShowOrderList();
+			} catch (Exception ex) { 
+				Console.WriteLine(ex.Message);
+			}
 		}
 
 		async void OnCompiled(object sender, EventArgs e)
@@ -162,7 +204,7 @@ namespace ProductAssembly
 		async void OnCompiledForce(object sender, EventArgs e)
 		{
 			if (!await DisplayAlert("Вы действительно хотите ПРИНУДИТЕЛЬНО собрать контейнер?", "", "OK", "Отмена")) return;
-			if (!await DisplayAlert("Вы уверенны, что хотите ПРИНУДИТЕЛЬНО собрать контейнер?", "", "OK", "Отмена")) return;
+			if (!await DisplayAlert("Вы уверены, что хотите ПРИНУДИТЕЛЬНО собрать контейнер?", "", "OK", "Отмена")) return;
 
 			Complate(true);
 		}
@@ -193,9 +235,15 @@ namespace ProductAssembly
 			ShowOrderList();
 		}
 
+		protected override void OnDisappearing()
+		{
+			base.OnDisappearing();
+			App.CurrentActionStatus = 1;
+		}
+
 		void RefreshOrderPosition()
 		{
-			while (true) {
+			while (App.CurrentActionStatus != 1) {
 				MyRequest requestUser = new MyRequest {
 					PathApi = string.Format(Api.ApiGetOrdersForAdmin, App.CurrentManufactures.ManufacturerID, App.CurrentReportId),
 					Param = new Dictionary<string, string> {
@@ -273,7 +321,8 @@ namespace ProductAssembly
 						item.ProductInOrderID = itemDB.ProductInOrderID;
 					}
 
-					if (differenceproductDB.Count > 0) {
+					if (differenceproductDB.Count > 0 && App.CurrentActionStatus == 0) {
+					//if (differenceproductDB.Count > 0) {
 						await DataBaseUtils<OrderPosition>.UpdateAllAsync(differenceproductDB);
 						ShowOrderList();
 					}

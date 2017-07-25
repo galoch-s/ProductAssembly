@@ -275,7 +275,7 @@ _mono_aot_file_info:
 	.long 32,0,0,0,0,0,0,0
 	.long 0,0,0,0,0,0,0,0
 	.long 0
-	.byte 81,81,160,67,254,192,83,143,219,230,233,25,129,102,220,235
+	.byte 100,0,230,151,247,12,124,218,101,179,22,183,132,42,76,54
 	.globl _mono_aot_module_Calabash_info
 	.align 2
 _mono_aot_module_Calabash_info:

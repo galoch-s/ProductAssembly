@@ -23,8 +23,8 @@
 				VerticalOptions = "FillAndExpand">
 			
 
-			<local:HeaderView x:Name="headerView">
-		 		<local:HeaderView.ContainerContent>
+			<!--<local:HeaderView x:Name="headerView">
+		 		<local:HeaderView.ContainerContent>-->
 					
 					<StackLayout VerticalOptions = "FillAndExpand">
 						<StackLayout x:Name="layoutProgress" Spacing="20" VerticalOptions="CenterAndExpand" IsVisible="false">
@@ -41,8 +41,8 @@
 			          	</StackLayout>
 					</StackLayout>
 					
-		        </local:HeaderView.ContainerContent>
-			</local:HeaderView>
+		        <!--</local:HeaderView.ContainerContent>
+			</local:HeaderView>-->
 			
 
 		</StackLayout>

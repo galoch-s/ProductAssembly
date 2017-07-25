@@ -8013,7 +8013,7 @@ _mono_aot_file_info:
 	.long 208,0,0,0,0,0,0,0
 	.long 0,0,0,0,0,0,0,0
 	.long 0
-	.byte 79,204,114,126,52,245,40,120,162,21,82,152,56,41,70,19
+	.byte 98,74,7,161,18,145,173,135,97,87,90,227,54,141,228,76
 	.globl _mono_aot_module_SQLiteNetExtensionsAsync_info
 	.align 2
 _mono_aot_module_SQLiteNetExtensionsAsync_info:

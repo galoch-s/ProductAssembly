@@ -13,6 +13,9 @@ namespace ProductAssembly
 		[PrimaryKey]
 		public int Id { get; set; }
 
+		[JsonProperty("admin_id")]
+		public int AdminId { get; set; }
+
 		[JsonProperty("id")]
 		public int ApiId { get; set; }
 
@@ -43,11 +46,11 @@ namespace ProductAssembly
 		[Ignore]
 		public List<UserRole> RolesList { get; set; }
 
-		public double CountMunutesProduct { get; set; }
-
 		public DateTime DateLoadProduct { get; set; }
 
 		public bool IsLoadProduct { get; set; }
+
+		public int TypeContainer { get; set; }
 
 		private static User user;
 		[Ignore]
@@ -146,6 +149,8 @@ namespace ProductAssembly
 				user = null;
 				DeleteItem(Constants.UserID);
 
+
+				/// TODO раскомментировать
 				await DataBaseUtils<ReportAdmin>.ClearTableAsync();
 				await DataBaseUtils<ProductInOrder>.ClearTableAsync();
 				await DataBaseUtils<ContainerAdmin>.ClearTableAsync();

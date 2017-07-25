@@ -15,7 +15,6 @@ namespace ProductAssembly
 		const int countReport = 8;
 		int countElements;
 		int indexElement = 0;
-		DateTime oldDate;
 		int countAttemptRequest = 4;
 
 		public LoadData()
@@ -47,9 +46,9 @@ namespace ProductAssembly
 			NetWorkClient<ReportAdmin> netWorkClient = new NetWorkClient<ReportAdmin> {
 				ActionFinished = LoadReportCompliteAsync,
 				ActionError = (request, model) => {
+					Console.WriteLine("Error LoadReport");
 					if (eventLoadData != null)
 						eventLoadData(this, false);
-					Console.WriteLine("error=" + model.ErrorMessage);
 				}
 			};
 			netWorkClient.GetLoad(requestUser);
@@ -57,21 +56,46 @@ namespace ProductAssembly
 
 		async void LoadReportCompliteAsync(List<ReportAdmin> entityList, BaseModel model)
 		{
-			//entityList = entityList.Take(countReport).ToList();
-			List<ReportAdmin> reportsDBList = await DataBaseUtils<ReportAdmin>.GetAllWithChildrenAsync();
+			try {
+				List<ReportAdmin> reportsDBList = await DataBaseUtils<ReportAdmin>.GetAllWithChildrenAsync();
+				if (reportsDBList.Count == 0)
+					await DataBaseUtils<ReportAdmin>.InsertOrReplaceAllWithChildrenAsync(entityList);
+				else {
+					IEnumerable<ReportAdmin> differenceReportDB = reportsDBList.Except(entityList, new ReportAdminComparer());
+					foreach (ReportAdmin item in differenceReportDB) {
+						Console.WriteLine("************* DELETE ReportId" + item.Id);
+						await DataBaseUtils<ReportAdmin>.DeleteItemAsync(item);
+						await DataBaseUtils<ProductInOrder>.DeleteItemAsync(g => g.ReportId == item.Id);
+						ImageUtils.DeleteFolder(Constants.PrefixFolderReport + item.Id);
+					}
+					differenceReportDB = entityList.Except(reportsDBList, new ReportAdminComparer());
+					if (differenceReportDB.Count() > 0)
+						await DataBaseUtils<ReportAdmin>.InsertOrReplaceAllWithChildrenAsync(differenceReportDB);
+				}
+				if (EEventLoadData != null)
+					EEventLoadData(this, true);
+			} catch (Exception ex) { 
+				Console.WriteLine("err LoadReportCompliteAsync = " + ex.Message);
+			}
+		}
+
+		void LoadReportComplite(List<ReportAdmin> entityList, BaseModel model)
+		{
+			entityList = entityList.Take(countReport).ToList();
+			List<ReportAdmin> reportsDBList = DataBaseUtils<ReportAdmin>.GetAllWithChildren();
 			if (reportsDBList.Count == 0)
-				await DataBaseUtils<ReportAdmin>.InsertOrReplaceAllWithChildrenAsync(entityList);
+				DataBaseUtils<ReportAdmin>.InsertOrReplaceAllWithChildren(entityList);
 			else {
 				IEnumerable<ReportAdmin> differenceReportDB = reportsDBList.Except(entityList, new ReportAdminComparer());
 				foreach (ReportAdmin item in differenceReportDB) {
 					Console.WriteLine("************* DELETE ReportId" + item.Id);
-					await DataBaseUtils<ReportAdmin>.DeleteItemAsync(item);
-					await DataBaseUtils<ProductInOrder>.DeleteItemAsync(g => g.ReportId == item.Id);
+					DataBaseUtils<ReportAdmin>.DeleteItem(item);
+					DataBaseUtils<ProductInOrder>.DeleteItem(g => g.ReportId == item.Id);
 					ImageUtils.DeleteFolder(Constants.PrefixFolderReport + item.Id);
 				}
 				differenceReportDB = entityList.Except(reportsDBList, new ReportAdminComparer());
 				if (differenceReportDB.Count() > 0)
-					await DataBaseUtils<ReportAdmin>.InsertOrReplaceAllWithChildrenAsync(differenceReportDB);
+					DataBaseUtils<ReportAdmin>.InsertOrReplaceAllWithChildren(differenceReportDB);
 			}
 			if (EEventLoadData != null)
 				EEventLoadData(this, true);
@@ -100,10 +124,9 @@ namespace ProductAssembly
 				ActionError = (request, model) => {
 					if (eventLoadData != null)
 						eventLoadData(this, false);
-					Console.WriteLine("error=" + model.ErrorMessage);
 				}
 			};
-			netWorkClient.GetLoad(requestUser, null, parameters);
+			netWorkClient.GetLoad(requestUser, CancellationToken, parameters);
 		}
 
 		void LoadReportCompliteManufacturer(List<GroupsAction> groupsActionList, BaseModel model)
@@ -128,9 +151,6 @@ namespace ProductAssembly
 				});
 			}
 			InnerJoinReportManufactire(entityList, manufacturerId);
-			//Task.Run(async () => {
-				
-			//});
 		}
 
 		async void InnerJoinReportManufactire(List<ReportAdmin> entityList, int manufacturerId)
@@ -139,10 +159,7 @@ namespace ProductAssembly
 			List<ReportAdmin> reportsDBList = await ReportAdmin.GetOpenReportAsync(manufacturerId);
 			if (reportsDBList.Count == 0) {
 				await DataBaseUtils<ReportAdmin>.InsertOrReplaceAllWithChildrenAsync(entityList);
-				var dfdf = DataBaseUtils<ReportAdmin>.GetAllWithChildren();
-				Console.WriteLine("sdfdsf");
-			}
-			else {
+			} else {
 				List<ReportAdmin> differenceReportDB = reportsDBList.Except(entityList, new ReportAdminComparer()).ToList();
 				foreach (ReportAdmin item in differenceReportDB) {
 					Console.WriteLine("************* DELETE ReportId" + item.Id);
@@ -155,7 +172,6 @@ namespace ProductAssembly
 					await DataBaseUtils<ReportAdmin>.InsertOrReplaceAllWithChildrenAsync(differenceReportDB);
 				}
 			}
-
 			if (EEventLoadData != null)
 				EEventLoadData(this, true);
 		}
@@ -211,16 +227,16 @@ namespace ProductAssembly
 
 
 		#region ******** LoadContainer *********
-		public void LoadContainer(int reportId, bool isLoadOrderPosition, EventHandler<bool> eventLoadData, Action<MyRequest, BaseModel> actionError, Action<int, int, string> actionProgress, CancellationTokenSource token = null)
+		public void LoadContainer(int reportId, int typeContainer, bool isLoadOrderPosition, EventHandler<bool> eventLoadData, Action<MyRequest, BaseModel> actionError, Action<int, int, string> actionProgress, CancellationTokenSource token = null)
 		{
 			ActionError = actionError;
 			ActionProgress = actionProgress;
 			EEventLoadData = eventLoadData;
 			Dictionary<string, object> parameters = new Dictionary<string, object> {
 				{"reportId", reportId},
-				{"isLoadOrderPosition", isLoadOrderPosition}
+				{"isLoadOrderPosition", isLoadOrderPosition},
+				{"typeContainer", typeContainer}
 			};
-			oldDate = DateTime.Now;
 			MyRequest requestUser = new MyRequest() {
 				PathApi = string.Format(Api.ApiGetContainers, reportId),
 				Param = new Dictionary<string, string> { { "per-page", XPagination.MaxCountElementToPage.ToString() } },
@@ -229,11 +245,15 @@ namespace ProductAssembly
 				}
 			};
 			NetWorkClient<ContainerAdmin> netWorkClient = new NetWorkClient<ContainerAdmin>() {
-				ActionFinished = LoadContainerCompliteAsync,
+				ActionFinished = LoadContainerComplite,
 				ActionError = (request, model) => {
+					if (model.StatusCode == 0) {
+						if (eventLoadData != null)
+							eventLoadData(request, false);
+						return;
+					}
 					if (ActionError != null)
 						ActionError(request, model);
-					Console.WriteLine("error=" + model.ErrorMessage);
 				}
 			};
 			netWorkClient.GetLoad(requestUser, token, parameters);
@@ -241,20 +261,29 @@ namespace ProductAssembly
 		#endregion
 
 		#region ******** LoadOrderPosition *********
+
+
 		async void LoadContainerCompliteAsync(List<ContainerAdmin> entityList, BaseModel model)
 		{
+			/// TODO удалить entityList = entityList.Take(50).ToList();
 			indexElement = 0;
 			entityList = entityList.OrderBy(g => g.ManufacturerName).ToList();
 			int reportIdThread = (int)model.Parameters["reportId"];
+			int typeContainer = (int)model.Parameters["typeContainer"];
 			bool isLoadOrderPosition = (bool)model.Parameters["isLoadOrderPosition"];
 			foreach (ContainerAdmin entity in entityList) {
 				entity.ReportId = reportIdThread;
 			}
-
 			List<ContainerAdmin> containerDBList = await DataBaseUtils<ContainerAdmin>.GetAllWithChildrenAsync(g => g.ReportId == reportIdThread);
-			if (containerDBList.Count == 0)
-				await DataBaseUtils<ContainerAdmin>.InsertAllAsync(entityList);
-			else {
+			if (typeContainer != 0)
+				containerDBList = containerDBList.FindAll(g => g.ActiveOptions.Any(t => t.OptionId == typeContainer));
+
+			if (containerDBList.Count == 0) {
+				if (User.Singleton != null && User.Singleton.RolesList != null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutCompleter))
+					ContainerAdmin.SetCompilerComplite(entityList);
+
+				await DataBaseUtils<ContainerAdmin>.InsertAllWithChildrenAsync(entityList);
+			} else {
 				/// Оставляем в БД только те контейнеры с позициями, которые получили от АПИ
 				IEnumerable<ContainerAdmin> differenceReportDB = containerDBList.Except(entityList, new ContainerAdminComparer());
 				foreach (ContainerAdmin item in differenceReportDB) {
@@ -263,19 +292,39 @@ namespace ProductAssembly
 				}
 				differenceReportDB = entityList.Except(containerDBList, new ContainerAdminComparer());
 				if (differenceReportDB.Count() > 0)
-					await DataBaseUtils<ContainerAdmin>.InsertAllAsync(entityList);
+					await DataBaseUtils<ContainerAdmin>.InsertAllWithChildrenAsync(entityList);
 				ContainerAdmin tempContainerAdmin;
 				foreach (ContainerAdmin container in containerDBList) {
 					tempContainerAdmin = entityList.SingleOrDefault(g => g.ManufacturerID == container.ManufacturerID && g.ReportId == container.ReportId);
 					if (tempContainerAdmin == null)
 						continue;
-					container.ContainerType = tempContainerAdmin.ContainerType;
-					container.Assign = tempContainerAdmin.Assign;
-					container.AssignComplate = tempContainerAdmin.AssignComplate;
-				}
-				await DataBaseUtils<ContainerAdmin>.UpdateAllAsync(containerDBList);
-			}
 
+					bool isEdit = false;
+					if (container.ContainerType != tempContainerAdmin.ContainerType || container.Assign != tempContainerAdmin.Assign ||
+							container.AssignComplate != tempContainerAdmin.AssignComplate) {
+						container.ContainerType = tempContainerAdmin.ContainerType;
+						container.Assign = tempContainerAdmin.Assign;
+						container.AssignComplate = tempContainerAdmin.AssignComplate;
+						isEdit = true;
+					}
+
+					if (!container.IsCompilerComplite) {
+						foreach (ContainerAdminCompiledInReport containerAdminCompiledInReport in tempContainerAdmin.ContainerAdminCompiledInReportList) {
+							if (container.ContainerAdminCompiledInReportList.SingleOrDefault(g => g.AdminId == containerAdminCompiledInReport.AdminId) == null) {
+								container.ContainerAdminCompiledInReportList.Add(containerAdminCompiledInReport);
+
+								if (container.ContainerAdminCompiledInReportList.Any(g => g.AdminId == User.Singleton.AdminId)) {
+									container.IsCompilerComplite = true;
+									isEdit = true;
+								}
+							}
+						}
+					}
+					if (isEdit) {
+						await DataBaseUtils<ContainerAdmin>.UpdateAsync(container);
+					}
+				}
+			}
 			Dictionary<string, object> parameters = new Dictionary<string, object> {
 				{"reportId", reportIdThread}
 			};
@@ -295,21 +344,30 @@ namespace ProductAssembly
 			};
 			netWorkClient.GetAll(requestUser, paramerters: parameters);
 		}
-		/*
+
+
 		void LoadContainerComplite(List<ContainerAdmin> entityList, BaseModel model)
 		{
+			/// TODO удалить entityList = entityList.Take(50).ToList();
+			entityList = entityList.Take(20).ToList();
 			indexElement = 0;
 			entityList = entityList.OrderBy(g => g.ManufacturerName).ToList();
 			int reportIdThread = (int)model.Parameters["reportId"];
+			int typeContainer = (int)model.Parameters["typeContainer"];
 			bool isLoadOrderPosition = (bool)model.Parameters["isLoadOrderPosition"];
 			foreach (ContainerAdmin entity in entityList) {
 				entity.ReportId = reportIdThread;
 			}
-
 			List<ContainerAdmin> containerDBList = DataBaseUtils<ContainerAdmin>.GetAllWithChildren(g => g.ReportId == reportIdThread);
-			if (containerDBList.Count == 0)
-				DataBaseUtils<ContainerAdmin>.InsertAll(entityList);
-			else {
+			if (typeContainer != 0)
+				containerDBList = containerDBList.FindAll(g => g.ActiveOptions.Any(t => t.OptionId == typeContainer));
+
+			if (containerDBList.Count == 0) {
+				if (User.Singleton != null && User.Singleton.RolesList != null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutCompleter))
+					ContainerAdmin.SetCompilerComplite(entityList);
+
+				DataBaseUtils<ContainerAdmin>.InsertAllWithChildren(entityList);
+			} else {
 				/// Оставляем в БД только те контейнеры с позициями, которые получили от АПИ
 				IEnumerable<ContainerAdmin> differenceReportDB = containerDBList.Except(entityList, new ContainerAdminComparer());
 				foreach (ContainerAdmin item in differenceReportDB) {
@@ -318,23 +376,45 @@ namespace ProductAssembly
 				}
 				differenceReportDB = entityList.Except(containerDBList, new ContainerAdminComparer());
 				if (differenceReportDB.Count() > 0)
-					DataBaseUtils<ContainerAdmin>.InsertAll(entityList);
+					DataBaseUtils<ContainerAdmin>.InsertAllWithChildren(entityList);
 				ContainerAdmin tempContainerAdmin;
 				foreach (ContainerAdmin container in containerDBList) {
 					tempContainerAdmin = entityList.SingleOrDefault(g => g.ManufacturerID == container.ManufacturerID && g.ReportId == container.ReportId);
 					if (tempContainerAdmin == null)
 						continue;
-					container.ContainerType = tempContainerAdmin.ContainerType;
-				}
-				DataBaseUtils<ContainerAdmin>.UpdateAll(containerDBList);
-			}
 
+					bool isEdit = false;
+					if (container.ContainerType != tempContainerAdmin.ContainerType || container.Assign != tempContainerAdmin.Assign ||
+							container.AssignComplate != tempContainerAdmin.AssignComplate) {
+						container.ContainerType = tempContainerAdmin.ContainerType;
+						container.Assign = tempContainerAdmin.Assign;
+						container.AssignComplate = tempContainerAdmin.AssignComplate;
+						isEdit = true;
+					}
+
+					if (!container.IsCompilerComplite) {
+						foreach (ContainerAdminCompiledInReport containerAdminCompiledInReport in tempContainerAdmin.ContainerAdminCompiledInReportList) {
+							if (container.ContainerAdminCompiledInReportList.SingleOrDefault(g => g.AdminId == containerAdminCompiledInReport.AdminId) == null) {
+								container.ContainerAdminCompiledInReportList.Add(containerAdminCompiledInReport);
+
+								if (container.ContainerAdminCompiledInReportList.Any(g => g.AdminId == User.Singleton.AdminId)) {
+									container.IsCompilerComplite = true;
+									isEdit = true;
+								}
+							}
+						}
+					}
+					if (isEdit) {
+						DataBaseUtils<ContainerAdmin>.Update(container);
+					}
+				}
+			}
 			Dictionary<string, object> parameters = new Dictionary<string, object> {
 				{"reportId", reportIdThread}
 			};
 			if (isLoadOrderPosition) {
 				if (EEventLoadData != null)
-                    EEventLoadData(null, true);
+					EEventLoadData(null, true);
 				return;
 			}
 
@@ -348,7 +428,6 @@ namespace ProductAssembly
 			};
 			netWorkClient.GetAll(requestUser, paramerters: parameters);
 		}
-		*/
 
 		void OrderCompile(List<Order> entityList, BaseModel model)
 		{
@@ -369,10 +448,6 @@ namespace ProductAssembly
 			if (indexElement == countElements) {
 				if (EEventLoadData != null)
 					EEventLoadData(this, true);
-
-				DateTime newDate = DateTime.Now;
-				TimeSpan ts = newDate - oldDate;
-				Console.WriteLine("###################### Total minutes :" + ts.TotalMinutes);
 			}
 		}
 
@@ -441,7 +516,7 @@ namespace ProductAssembly
 		Dictionary<MyRequest, int> requestCount = new Dictionary<MyRequest, int>();
 		void ErrorRequest(MyRequest request, BaseModel model)
 		{
-			if (model.StatusCode == 0) { 
+			if (model.StatusCode == 0) {
 				if (EEventLoadData != null)
 					EEventLoadData(this, true);
 				return;
@@ -478,8 +553,6 @@ namespace ProductAssembly
 			ActionProgress = actionProgress;
 			EEventLoadData = eventLoadData;
 
-			oldDate = DateTime.Now;
-
 			Dictionary<string, object> parameters = new Dictionary<string, object> {
 				{"containerId", containerId},
 				{"status", status}
@@ -497,12 +570,9 @@ namespace ProductAssembly
 			};
 			User.Singleton.DateLoadProduct = DateTime.Now;
 			DataBaseUtils<User>.Update(User.Singleton);
-
-			oldDate3 = DateTime.Now;
 			netWorkClient.GetAll(requestUser, paramerters: parameters);
 		}
 
-		DateTime oldDate3;
 		async Task ProductItaration(List<Product> entityList, BaseModel model, int indexItaration)
 		{
 			await ProductSave(entityList, model, indexItaration);
@@ -511,17 +581,8 @@ namespace ProductAssembly
 		void ProductComplete(List<Product> entityList, BaseModel model)
 		{
 			if (indexElement == countElements) {
-				DateTime newDate = DateTime.Now;
-				TimeSpan ts = newDate - oldDate;
-				Console.WriteLine("###################### Total minutes All:" + ts.TotalMinutes);
-
 				User.Singleton.IsLoadProduct = true;
 				DataBaseUtils<User>.Update(User.Singleton);
-
-				if (User.Singleton.CountMunutesProduct == 0) {
-					User.Singleton.CountMunutesProduct = ts.TotalMinutes;
-					DataBaseUtils<User>.Update(User.Singleton);
-				}
 
 				if (EEventLoadData != null)
 					EEventLoadData(this, true);
@@ -530,16 +591,11 @@ namespace ProductAssembly
 
 		async Task ProductSave(List<Product> entityList, BaseModel model, int indexItaration)
 		{
-			DateTime newDate3 = DateTime.Now;
-			TimeSpan ts3 = newDate3 - oldDate3;
-			Console.WriteLine("###################### Total minutes  Request :" + ts3.TotalMinutes);
-
 			int containerId = (int)model.Parameters["containerId"];
 			ProducStatusEnum producStatus = (ProducStatusEnum)model.Parameters["status"];
 			foreach (var entity in entityList) {
 				entity.ManufacturerId = containerId;
 			}
-			DateTime oldDate5 = DateTime.Now;
 			List<Product> containerDBList = await DataBaseUtils<Product>.GetAllWithChildrenAsync(
 											Product.GetWhereToProduct(producStatus, containerId),
 											g => g.Id,
@@ -547,15 +603,9 @@ namespace ProductAssembly
 											Constants.CountElementsToIterationApi,
 											Constants.CountElementsToIterationApi * (indexItaration - 1)
 			);
-			DateTime newDate5 = DateTime.Now;
-			TimeSpan ts5 = newDate5 - oldDate5;
-			Console.WriteLine("###################### Total minutes  DataBase :" + ts5.TotalMinutes);
-
 			List<Product> productNotLoad = new List<Product>();
 
 			if (containerDBList.Count != 0) {
-				DateTime oldDate4 = DateTime.Now;
-
 				/// Оставляем в БД только те товары которые получили от АПИ
 				List<Product> differenceReportDB = containerDBList.Except(entityList, new ProductComparer()).ToList();
 				foreach (Product item in differenceReportDB) {
@@ -565,12 +615,7 @@ namespace ProductAssembly
 				/// Оставляем в списке только те товары которых нету в БД
 				entityList = entityList.Except(containerDBList, new ProductComparer()).ToList();
 				entityList.AddRange(containerDBList.FindAll(g => g.IsLoadImage == false));
-
-				DateTime newDate4 = DateTime.Now;
-				TimeSpan ts4 = newDate4 - oldDate4;
-				Console.WriteLine("###################### Total minutes  Compare :" + ts4.TotalMinutes);
 			}
-			DateTime oldDate2 = DateTime.Now;
 			int countEl = 200;
 			int countPage = (int)Math.Ceiling((double)entityList.Count / countEl);
 			List<Product> tempProduct;
@@ -583,9 +628,6 @@ namespace ProductAssembly
 				}
 			}
 			productNotLoad = entityList;
-			DateTime newDate2 = DateTime.Now;
-			TimeSpan ts = newDate2 - oldDate2;
-			Console.WriteLine("###################### Total minutes Insert Data :" + ts.TotalMinutes);
 			countElements = model.TotalCount;
 			if (Constants.CountElementsToIterationApi * indexItaration < countElements)
 				indexElement = Constants.CountElementsToIterationApi * indexItaration - productNotLoad.Count;
@@ -686,9 +728,26 @@ namespace ProductAssembly
 			netWorkClient.GetAll(requestUser);
 		}
 
-		void UserContainersComplate(List<UserContainer> entityList, BaseModel model)
+		async void UserContainersComplate(List<UserContainer> entityList, BaseModel model)
 		{
-			DataBaseUtils<UserContainer>.InsertOrReplaceAllWithChildren(entityList);
+			List<UserContainer> containerDBList = await DataBaseUtils<UserContainer>.GetAllAsync();
+			if (containerDBList.Count == 0) {
+				DateTime oldDate = DateTime.Now;
+				await DataBaseUtils<UserContainer>.InsertAllWithChildrenAsync(entityList);
+				DateTime newDate = DateTime.Now;
+				TimeSpan ts = newDate - oldDate;
+				Console.WriteLine("###################### Total minutes All:" + ts.TotalMinutes);
+			}
+			else {
+				/// Оставляем в БД только те контейнеры с позициями, которые получили от АПИ
+				IEnumerable<UserContainer> differenceReportDB = containerDBList.Except(entityList, new UserContainerComparer());
+				foreach (UserContainer item in differenceReportDB) {
+					await DataBaseUtils<UserContainer>.DeleteItemAsync(item);
+				}
+				differenceReportDB = entityList.Except(containerDBList, new UserContainerComparer());
+				if (differenceReportDB.Count() > 0)
+					await DataBaseUtils<UserContainer>.InsertAllWithChildrenAsync(entityList);
+			}
 			if (EEventLoadData != null)
 				EEventLoadData(this, true);
 		}
@@ -714,6 +773,22 @@ namespace ProductAssembly
 
 		void CompilersComplate(List<Compiler> entityList, BaseModel model)
 		{
+			List<Compiler> containerDBList = DataBaseUtils<Compiler>.GetAll();
+			if (containerDBList.Count == 0)
+				DataBaseUtils<Compiler>.InsertAllWithChildren(entityList);
+			else {
+				/// Оставляем в БД только те контейнеры с позициями, которые получили от АПИ
+				IEnumerable<Compiler> differenceReportDB = containerDBList.Except(entityList, new CompilerComparer());
+				foreach (Compiler item in differenceReportDB) {
+					DataBaseUtils<Compiler>.DeleteItem(item);
+				}
+				differenceReportDB = entityList.Except(containerDBList, new CompilerComparer());
+				if (differenceReportDB.Count() > 0)
+					DataBaseUtils<Compiler>.InsertAllWithChildren(entityList);
+			}
+			if (EEventLoadData != null)
+				EEventLoadData(this, true);
+
 			Task.Run(async () => {
 				await DataBaseUtils<Compiler>.InsertOrReplaceAllWithChildrenAsync(entityList);
 				if (EEventLoadData != null)
@@ -740,7 +815,71 @@ namespace ProductAssembly
 			Task.Run(async () => {
 				if (entityList != null && entityList.Count == 1) {
 					entityList[0].Id = 1;
+					App.VersionApi = entityList[0].Version;
 					await DataBaseUtils<VersionApi>.InsertOrReplaceAsync(entityList[0]);
+				}
+				if (EEventLoadData != null)
+					EEventLoadData(this, true);
+			});
+		}
+
+		#endregion
+
+		#region ******** TypeOfDisplayContainer *********
+		public void TypeOfDisplayContainer(EventHandler<bool> eventLoadData, Action<MyRequest, BaseModel> actionError, CancellationTokenSource token = null)
+		{
+			EEventLoadData = eventLoadData;
+			MyRequest requestUser = new MyRequest() {
+				PathApi = Api.ApiTypeOfDisplayContainer,
+				HeaderParam = new Dictionary<HttpRequestHeader, string> {
+							{ HttpRequestHeader.Authorization, User.Singleton.HashKey }
+						}
+			};
+			NetWorkClient<TypeOfDisplayContainer> netWorkClient = new NetWorkClient<TypeOfDisplayContainer> {
+				ActionFinished = TypeOfDisplayContainerComplate,
+				ActionError = ErrorRequest
+			};
+			netWorkClient.GetAll(requestUser);
+		}
+
+		void TypeOfDisplayContainerComplate(List<TypeOfDisplayContainer> entityList, BaseModel model)
+		{
+			Task.Run(async () => {
+				await DataBaseUtils<TypeOfDisplayContainer>.InsertOrReplaceAllWithChildrenAsync(entityList);
+				if (EEventLoadData != null)
+	                EEventLoadData(this, true);
+			});
+		}
+
+		#endregion
+
+		#region ******** TypeContainer *********
+		public void TypeContainer(EventHandler<bool> eventLoadData, Action<MyRequest, BaseModel> actionError, CancellationTokenSource token = null)
+		{
+			EEventLoadData = eventLoadData;
+			MyRequest requestUser = new MyRequest() {
+				PathApi = Api.ApiGetTypeContainer,
+				HeaderParam = new Dictionary<HttpRequestHeader, string> {
+					{ HttpRequestHeader.Authorization, User.Singleton.HashKey }
+				}
+			};
+			NetWorkClient<Dictionary<string, int>> netWorkClient = new NetWorkClient<Dictionary<string, int>> {
+				ActionFinished = TypeContainerComplate,
+				ActionError = ErrorRequest
+			};
+			netWorkClient.GetSimpleAsync(requestUser);
+		}
+
+		void TypeContainerComplate(List<Dictionary<string, int>> entityList, BaseModel model)
+		{
+			Task.Run(async () => {
+				if (entityList != null && entityList.Count == 1) {
+					Dictionary<string, int> status = entityList[0];
+
+					if (User.Singleton != null) {
+						User.Singleton.TypeContainer = status["status"];
+						await DataBaseUtils<User>.UpdateAsync(User.Singleton);
+					}
 				}
 				if (EEventLoadData != null)
 					EEventLoadData(this, true);

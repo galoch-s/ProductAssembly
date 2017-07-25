@@ -27,6 +27,12 @@ namespace ProductAssembly {
         private global::Xamarin.Forms.Label lblTitle;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
+        private global::Xamarin.Forms.StackLayout layoutCountCompleter;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
+        private global::Xamarin.Forms.Button btnAssign;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
         private global::ProductAssembly.ProductButtonView productButtonView;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
@@ -36,6 +42,8 @@ namespace ProductAssembly {
             contentView = global::Xamarin.Forms.NameScopeExtensions.FindByName <global::Xamarin.Forms.ContentView>(this, "contentView");
             layoutMain = global::Xamarin.Forms.NameScopeExtensions.FindByName <global::Xamarin.Forms.StackLayout>(this, "layoutMain");
             lblTitle = global::Xamarin.Forms.NameScopeExtensions.FindByName <global::Xamarin.Forms.Label>(this, "lblTitle");
+            layoutCountCompleter = global::Xamarin.Forms.NameScopeExtensions.FindByName <global::Xamarin.Forms.StackLayout>(this, "layoutCountCompleter");
+            btnAssign = global::Xamarin.Forms.NameScopeExtensions.FindByName <global::Xamarin.Forms.Button>(this, "btnAssign");
             productButtonView = global::Xamarin.Forms.NameScopeExtensions.FindByName <global::ProductAssembly.ProductButtonView>(this, "productButtonView");
         }
     }

@@ -12,7 +12,7 @@ namespace ProductAssembly
 
 	public class MyRequest
 	{
-		public string _urlServer;
+		private string _urlServer;
 		public string UrlServer {
 			get {
 				if (string.IsNullOrEmpty(_urlServer)) _urlServer = Constants.UrlHost;
@@ -25,7 +25,7 @@ namespace ProductAssembly
 		public Dictionary<HttpRequestHeader, string> HeaderParam { get; set; }
 		public Dictionary<string, string> Param { get; set; }
 
-		public int _timeOut;
+		private int _timeOut;
 		public int TimeOut {
 			get {
 				if (_timeOut == 0) _timeOut = Constants.RequestTimeOut;
@@ -94,7 +94,7 @@ namespace ProductAssembly
 		public List<string> Source { get; set; }
 		public string ErrorMessage { get; set; }
 		public HttpStatusCode StatusCode { get; set; }
-		public WebExceptionStatus ExceptionStatus { get; set; }
+		//public WebExceptionStatus ExceptionStatus { get; set; }
 		public Dictionary<string, object> Parameters { get; set; }
 
 		public CancellationTokenSource Token { get; set; }

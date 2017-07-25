@@ -24,6 +24,10 @@ namespace ProductAssembly
 		UserCompilerEditPass,
 
 		//AdminContainer
-		AdminContainerAssing
+		AdminContainerAssing,
+
+		Log,
+
+		UserTypeContainer
 	}
 }

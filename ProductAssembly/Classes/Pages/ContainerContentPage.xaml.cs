@@ -54,7 +54,7 @@ namespace ProductAssembly
 		{ 
 #if __IOS__
 			UIAlertView alert = new UIAlertView();
-			alert.Title = "Фактическое количество товара";
+			alert.Title = "Количество сборщиков";
 			alert.AddButton("Отмена");
 			alert.AddButton("ОК");
 			alert.AlertViewStyle = UIAlertViewStyle.PlainTextInput;
@@ -80,11 +80,11 @@ namespace ProductAssembly
 		async void EditAssign(int count)
 		{
 			if (count < 1) {
-				await App.MainNavigation.CurrentPage.DisplayAlert("Сообщение", "Значание не может быть меньше 0", "OK");
+				await App.MainNavigation.CurrentPage.DisplayAlert("Сообщение", "Значение не может быть меньше 1", "OK");
 				return;
 			}
 			if (count > 100) {
-				await App.MainNavigation.CurrentPage.DisplayAlert("Сообщение", "Значание не может быть больше 100", "OK");
+				await App.MainNavigation.CurrentPage.DisplayAlert("Сообщение", "Значение не может быть больше 100", "OK");
 				return;
 			}
 			RequestForServer dataForServer = new RequestForServer {

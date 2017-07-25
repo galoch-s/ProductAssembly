@@ -25,13 +25,25 @@ namespace ProductAssembly
 		protected override void SetupCell(bool isRecycled)
 		{
 			entity = BindingContext as ContainerAdmin;
+
 			if (entity != null) {
 				switch (entity.ContainerType) {
 					case CaseContainerType.Open:
-						if (User.Singleton != null && User.Singleton.RolesList != null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.ContainerManager) && entity.Assign > 1)
+						/// Если СБОРЩИК собрал этот контейнер 
+						//if (User.Singleton != null && User.Singleton.RolesList != null && User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.DjamshutCompleter) && 
+						//     	entity.ContainerAdminCompiledInReportList.Any(g => g.AdminId == User.Singleton.AdminId)) {
+						if (entity.IsCompilerComplite) {
+							btn.BackgroundColor = (Color)App.Current.Resources["containerInAssembly"];
+						
+						} else 
+							/// Если количество сборщиков на контейнер назначено больше одного
+							if (User.Singleton != null && User.Singleton.RolesList != null && 
+							    User.Singleton.RolesList.Any(g => g.Id == (int)UnumRoleID.ContainerManager || g.Id == (int)UnumRoleID.Admin) && entity.Assign > 1)
+							
 							btn.BackgroundColor = (Color)App.Current.Resources["appGreen"];
-						else
+						else {
 							btn.BackgroundColor = (Color)App.Current.Resources["containerToAssembly"];
+						}
 						btn.Text = Crop(entity.ManufacturerName);// + " на сборку";
 						break;
 					case CaseContainerType.Closed:

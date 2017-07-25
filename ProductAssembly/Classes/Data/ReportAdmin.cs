@@ -29,11 +29,14 @@ namespace ProductAssembly
 			return reportGroupList.Select(g => g.Key).ToList();
 		}
 
-		public static async Task<List<int>> GetActiveItemsAsync()
+		public static async Task<List<int>> GetActiveItemsAsync(int typeContainer)
 		{
 			if (Constants.IsWriteConsoleDB)
 				Console.WriteLine("ReportAdmin.GetActiveItemsAsync");
 			List<ContainerAdmin> containerListOpen = await SqlConnect.connectionAsync.GetAllWithChildrenAsync<ContainerAdmin>(g => g.ContainerType == CaseContainerType.Open);
+			if (typeContainer != 0)
+				containerListOpen = containerListOpen.FindAll(g => g.ActiveOptions.Any(k => k.OptionId == typeContainer));
+
 			IEnumerable<IGrouping<int, ContainerAdmin>> reportGroupList = containerListOpen.GroupBy(g => g.ReportId).Where(g => g.All(j => j.ProductInOrdersList.Count > 0));
 			return reportGroupList.Select(g => g.Key).ToList();
 		}

@@ -57,6 +57,8 @@ namespace ProductAssembly
 			connectionAsync.CreateTableAsync<Compiler>().Wait();
 			connectionAsync.CreateTableAsync<ReportAdmin>().Wait();
 			connectionAsync.CreateTableAsync<ContainerAdmin>().Wait();
+			connectionAsync.CreateTableAsync<ActiveOption>().Wait();
+			connectionAsync.CreateTableAsync<ContainerAdminCompiledInReport>().Wait();
 
 			connectionAsync.CreateTableAsync<Product>().Wait();
 			connectionAsync.CreateTableAsync<ProductOptionValue>().Wait();
@@ -73,6 +75,10 @@ namespace ProductAssembly
 			connectionAsync.CreateTableAsync<UserContainer>().Wait();
 			connectionAsync.CreateTableAsync<Compiler>().Wait();
 			connectionAsync.CreateTableAsync<VersionApi>().Wait();
+
+			connectionAsync.CreateTableAsync<TypeOfDisplayContainer>().Wait();
+
+			connectionAsync.CreateTableAsync<AppsLog>().Wait();
 		}
 	}
 

@@ -85,11 +85,11 @@
 				<StackLayout Spacing="0">
 					<ContentPresenter VerticalOptions="FillAndExpand" />
 
-					<Grid VerticalOptions="End" HorizontalOptions="FillAndExpand" HeightRequest="60">
+					<!--<Grid VerticalOptions="End" HorizontalOptions="FillAndExpand" HeightRequest="60">
 						<ctrl:BottomInfoBlockView Grid.Row="0" Grid.Column="0" LblName="Фотостудия" LblPhone="+7 (495) 204-15-83" ImgIcon="icons/phone.png" />
 						<ctrl:BottomInfoBlockView Grid.Row="0" Grid.Column="1" LblName="Колл-центр" LblPhone="+7 (495) 204-15-83" ImgIcon="icons/phone.png" />
 						<ctrl:BottomInfoBlockView Grid.Row="0" Grid.Column="2" LblName="Сборщик" 	LblPhone="+7 (495) 204-15-83" ImgIcon="icons/phone.png" />
-					</Grid>
+					</Grid>-->
 				</StackLayout>
 			</ControlTemplate>
 		

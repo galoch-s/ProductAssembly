@@ -16056,7 +16056,7 @@ _mono_aot_file_info:
 	.long 672,0,0,0,0,0,0,0
 	.long 0,0,0,0,0,0,0,0
 	.long 0
-	.byte 15,170,110,30,178,13,248,184,122,68,230,191,15,234,84,86
+	.byte 193,191,13,78,217,59,88,184,133,249,38,77,177,184,156,25
 	.globl _mono_aot_module_SDWebImage_info
 	.align 2
 _mono_aot_module_SDWebImage_info:
